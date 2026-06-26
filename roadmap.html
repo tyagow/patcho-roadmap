@@ -1,0 +1,405 @@
+<!doctype html><html lang="pt-BR"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PATCHO — Roadmap de Lançamento</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Zilla+Slab:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#1B1712;--bg2:#221C16;--ink:#120E0A;--bone:#ECE5D6;--bone-dim:#b3a994;--line:#3a3026;
+--terra:#3B2F25;--barro:#7A6A52;--argila:#B98B5E;--oliva:#6B7150;--osso:#ECE5D6;--carvao:#171109;--mata:#2E5A3A;}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--bone);font-family:'Archivo',system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;
+background-image:radial-gradient(circle at 12% 6%,rgba(185,139,94,.07),transparent 42%),radial-gradient(circle at 90% 94%,rgba(46,90,58,.12),transparent 46%);}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.04;
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+a{color:inherit;text-decoration:none}
+nav{position:sticky;top:0;z-index:100;background:rgba(18,14,10,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:22px;height:56px}
+nav .brand{font-family:'Anton';letter-spacing:.05em;font-size:19px}nav .brand b{color:var(--argila)}
+nav .links{display:flex;gap:16px;margin-left:auto;flex-wrap:wrap}
+nav a.l{font-family:'Barlow Condensed';font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-size:13px;color:var(--bone-dim);transition:.2s}
+nav a.l:hover{color:var(--argila)}
+@media(max-width:920px){nav .links{display:none}}
+header.hero{padding:80px 0 56px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+.eyebrow{font-family:'Barlow Condensed';text-transform:uppercase;letter-spacing:.3em;font-size:13px;color:var(--argila);font-weight:700;margin-bottom:18px}
+h1.mega{font-family:'Anton';line-height:.84;font-size:clamp(58px,12vw,150px);text-transform:uppercase}
+h1.mega .c{color:var(--argila)}
+.tagline{font-family:'Bebas Neue';letter-spacing:.05em;font-size:clamp(20px,3vw,34px);margin-top:14px}
+.tagline em{color:var(--argila);font-style:normal}
+.lede{max-width:720px;margin-top:22px;font-size:18px;color:var(--bone-dim)}
+.badge-row{display:flex;gap:11px;margin-top:28px;flex-wrap:wrap}
+.bdg{font-family:'Barlow Condensed';text-transform:uppercase;letter-spacing:.1em;font-weight:700;font-size:12.5px;padding:7px 14px;border:1px solid var(--argila);border-radius:30px;color:var(--argila)}
+.bdg.fill{background:var(--argila);color:var(--carvao)}
+section{padding:66px 0;border-bottom:1px solid var(--line)}
+.sec-head{display:flex;align-items:baseline;gap:15px;margin-bottom:10px;flex-wrap:wrap}
+.sec-num{font-family:'Space Mono';color:var(--argila);font-size:14px;font-weight:700}
+h2{font-family:'Anton';text-transform:uppercase;font-size:clamp(30px,5vw,58px);line-height:.92}
+.sec-intro{max-width:760px;color:var(--bone-dim);font-size:18px;margin-bottom:36px}
+.mini-h{font-family:'Barlow Condensed';text-transform:uppercase;letter-spacing:.18em;font-size:12px;color:var(--argila);font-weight:700;margin-bottom:10px}
+/* thesis */
+.thesis{display:grid;grid-template-columns:1.25fr .75fr;gap:28px;align-items:stretch}
+.thesis .card{background:linear-gradient(135deg,rgba(185,139,94,.12),rgba(59,47,37,.42));border:1px solid var(--line);border-radius:18px;padding:30px}
+.thesis .card.pos{background:linear-gradient(135deg,rgba(46,90,58,.16),rgba(59,47,37,.42))}
+.thesis p{font-size:16px;color:var(--bone-dim)}.thesis p b,.thesis p strong{color:var(--bone)}
+@media(max-width:820px){.thesis{grid-template-columns:1fr}}
+/* timeline */
+.phase{display:grid;grid-template-columns:64px 1fr;gap:20px;padding:8px 0 40px}
+.ph-rail{display:flex;flex-direction:column;align-items:center}
+.ph-num{font-family:'Anton';font-size:30px;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--argila);color:var(--carvao);flex:none}
+.ph-line{width:2px;flex:1;background:linear-gradient(var(--argila),var(--line));margin-top:8px}
+.ph-head{display:flex;align-items:center;gap:12px;margin-bottom:6px;flex-wrap:wrap}
+.ph-tag{font-family:'Barlow Condensed';text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:800;color:var(--carvao);background:var(--oliva);padding:3px 10px;border-radius:5px}
+.ph-when{font-family:'Space Mono';font-size:12.5px;color:var(--bone-dim)}
+.ph-body h3{font-family:'Bebas Neue';font-size:clamp(26px,3.6vw,40px);letter-spacing:.02em;line-height:1.02;margin:2px 0 8px}
+.ph-goal{color:var(--bone-dim);font-size:16px;max-width:760px;margin-bottom:22px}
+.ws-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.ws{background:var(--bg2);border:1px solid var(--line);border-radius:13px;padding:18px}
+.ws-name{font-family:'Barlow Condensed';text-transform:uppercase;letter-spacing:.1em;font-weight:800;font-size:13.5px;color:var(--bone);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.ws ul{list-style:none}.ws li{font-size:13.5px;color:var(--bone-dim);padding:6px 0 6px 16px;position:relative;border-bottom:1px dashed var(--line)}
+.ws li:last-child{border-bottom:0}.ws li::before{content:"›";position:absolute;left:0;color:var(--argila);font-weight:700}
+.ph-foot{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
+@media(max-width:760px){.ph-foot{grid-template-columns:1fr}.phase{grid-template-columns:44px 1fr;gap:14px}.ph-num{width:42px;height:42px;font-size:21px}}
+.pills{display:flex;flex-wrap:wrap;gap:7px}
+.pill{font-size:12px;color:var(--bone-dim);background:var(--bg2);border:1px solid var(--line);border-radius:20px;padding:5px 11px}
+ul.kpi{list-style:none}ul.kpi li{font-size:13px;color:var(--bone-dim);padding:4px 0 4px 16px;position:relative}
+ul.kpi li::before{content:"✓";position:absolute;left:0;color:var(--oliva);font-weight:700}
+.budg .bl{display:flex;justify-content:space-between;gap:10px;font-size:13px;padding:5px 0;border-bottom:1px dashed var(--line)}
+.budg .bl b{font-family:'Space Mono';color:var(--argila);white-space:nowrap}
+.budg .bl span{color:var(--bone-dim)}
+.risks{margin-top:16px;background:rgba(155,90,68,.08);border:1px solid #5e3b30;border-radius:12px;padding:14px 18px}
+.risks ul{list-style:none}.risks li{font-size:13px;color:#cf9282;padding:3px 0 3px 16px;position:relative}
+.risks li::before{content:"⚠";position:absolute;left:0;font-size:11px}
+/* first 7 days */
+.days{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.day{display:flex;gap:14px;background:var(--bg2);border:1px solid var(--line);border-radius:13px;padding:16px 18px}
+.day-n{font-family:'Anton';font-size:26px;color:var(--argila);flex:none;line-height:1}
+.day-t{font-size:13.5px;color:var(--bone-dim)}.day-t b{color:var(--bone)}
+/* products */
+.prod-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.prod{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:20px;transition:.2s}
+.prod:hover{border-color:var(--argila);transform:translateY(-2px)}
+.prod-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:8px}
+.prod-tier{font-family:'Barlow Condensed';text-transform:uppercase;letter-spacing:.12em;font-size:11px;font-weight:800;color:var(--argila)}
+.prod-price{font-family:'Space Mono';font-size:13px;color:var(--bone);font-weight:700;text-align:right}
+.prod-item{font-family:'Bebas Neue';font-size:21px;letter-spacing:.02em;color:var(--bone);margin-bottom:8px;line-height:1.05}
+.prod-note{font-size:13px;color:var(--bone-dim)}
+/* tables */
+table{width:100%;border-collapse:collapse;margin-top:6px;font-size:14px}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:'Barlow Condensed';text-transform:uppercase;letter-spacing:.1em;font-size:12px;color:var(--argila);font-weight:700}
+td{color:var(--bone-dim)}td b{color:var(--bone)}
+td.num{font-family:'Space Mono';color:var(--argila);white-space:nowrap;font-size:12.5px}
+.sub{font-size:12px;color:#8c8270;margin-top:3px}
+/* budget hero */
+.bud-hero{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:26px}
+.bud-card{border:1px solid var(--line);border-radius:16px;padding:24px;background:var(--bg2)}
+.bud-card.lean{border-color:var(--oliva)}.bud-card.comf{border-color:var(--argila)}
+.bud-card .bl2{font-family:'Barlow Condensed';text-transform:uppercase;letter-spacing:.14em;font-size:12px;font-weight:800;margin-bottom:8px}
+.bud-card.lean .bl2{color:#9ab37e}.bud-card.comf .bl2{color:var(--argila)}
+.bud-card .bv{font-family:'Space Mono';font-size:14px;color:var(--bone);line-height:1.5}
+@media(max-width:760px){.bud-hero{grid-template-columns:1fr}}
+.notebox{background:rgba(185,139,94,.09);border:1px solid var(--argila);border-radius:12px;padding:16px 20px;margin-top:20px;font-size:13px;color:var(--bone-dim)}
+.notebox b{color:var(--bone)}
+/* content system */
+.cs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.cs{background:var(--bg2);border:1px solid var(--line);border-radius:13px;padding:18px;border-left:3px solid var(--mata)}
+.cs-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.cs-name{font-family:'Bebas Neue';font-size:21px;letter-spacing:.02em;color:var(--bone)}
+.cs-cad{font-family:'Space Mono';font-size:11px;color:var(--argila)}
+.cs-fmt{font-family:'Barlow Condensed';text-transform:uppercase;letter-spacing:.08em;font-size:12px;color:var(--bone-dim);font-weight:600;margin:4px 0 8px}
+.cs-note{font-size:13px;color:var(--bone-dim)}
+/* suppliers */
+.sup-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.sup{background:var(--bg2);border:1px solid var(--line);border-radius:13px;padding:18px}
+.sup-type{font-family:'Bebas Neue';font-size:20px;letter-spacing:.02em;color:var(--bone);margin-bottom:6px}
+.sup-opts{font-size:13.5px;color:var(--bone);margin-bottom:8px}
+.sup-note{font-size:12.5px;color:var(--bone-dim)}
+/* metrics */
+.met-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}
+.met{background:var(--bg2);border:1px solid var(--line);border-radius:13px;padding:18px;text-align:center}
+.met-target{font-family:'Anton';font-size:24px;color:var(--argila);line-height:1.05}
+.met-name{font-size:13px;color:var(--bone);margin-top:8px}
+.met-when{font-family:'Space Mono';font-size:11px;color:var(--bone-dim);margin-top:6px}
+/* critical risks */
+.crit-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px}
+.crit{background:var(--bg2);border:1px solid var(--line);border-radius:13px;padding:18px;border-top:3px solid #9b5a44}
+.crit-r{font-family:'Barlow Condensed';font-weight:700;font-size:15px;color:var(--bone);text-transform:none;letter-spacing:0;line-height:1.25;margin-bottom:10px}
+.crit-m{font-size:13px;color:#9ab37e}.crit-m span{color:var(--oliva);font-weight:700}
+footer{padding:50px 0 80px;color:var(--bone-dim);font-size:14px}
+footer .big{font-family:'Anton';font-size:26px;color:var(--bone);text-transform:uppercase}
+footer .big span{color:var(--argila)}
+</style></head><body>
+
+<nav><div class="wrap">
+  <div class="brand">PAT<b>CHO</b></div>
+  <div class="links">
+    <a class="l" href="#tese">Tese</a>
+    <a class="l" href="#fases">Fases</a>
+    <a class="l" href="#7dias">7 Dias</a>
+    <a class="l" href="#produto">Produto</a>
+    <a class="l" href="#orcamento">Orçamento</a>
+    <a class="l" href="#conteudo">Conteúdo</a>
+    <a class="l" href="#legal">Legal</a>
+    <a class="l" href="#fornecedores">Fornecedores</a>
+    <a class="l" href="#metricas">Métricas</a>
+    <a class="l" href="#riscos">Riscos</a>
+  </div>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <div class="eyebrow">Roadmap de Lançamento · Pesquisa Profunda · jun 2026</div>
+  <h1 class="mega">PAT<span class="c">CHO</span></h1>
+  <div class="tagline">Born in the yard. <em>Built on dirt.</em></div>
+  <p class="lede">O plano para tirar a Patcho do quintal de Ibiraquera pro mundo — sem abrir uma marca de roupa, e sim filmando uma história que por acaso vende patches. Construir a tribo primeiro; o produto vem atrás. Tudo em BRL, bootstrapped, para uma dupla.</p>
+  <div class="badge-row">
+    <span class="bdg fill">5 fases · 12 meses</span>
+    <span class="bdg">Lean R$ 4–5,5k</span>
+    <span class="bdg">Ibiraquera / Imbituba · SC</span>
+    <span class="bdg">@patcho.co</span>
+  </div>
+</div></header>
+
+<section id="tese"><div class="wrap">
+  <div class="sec-head"><span class="sec-num">01</span><h2>A Tese & Posicionamento</h2></div>
+  <div class="thesis">
+    <div class="card"><div class="mini-h">A Tese</div><p>A Patcho não está abrindo uma marca de roupa — está filmando uma história que por acaso vende patches. O ativo que escala é conteúdo + tribo, não estoque. O patch barato (margem 65-70%) é o cartão de entrada no &#x27;parche&#x27;; o apparel premium (tee R$129-139, margem ~50-60% no heavyweight 300g) vem depois, financiado por pré-venda. O white space é real e está vazio: loam TROPICAL (verde-mata + barro vermelho de SC), casal His&amp;Hers como diferencial narrativo, backyard-build documentado, bilíngue PT/EN, comunidade ABERTA (&#x27;o parche acolhe quem cava&#x27;) como antídoto ao localismo elitista do surf. Sequenciar: dar antes de vender, cavar antes de colher, filmar antes de fabricar.</p></div>
+    <div class="card pos"><div class="mini-h">Posicionamento — Loam Premium Tropical</div><p>Loam Premium tropical: streetwear earthy refinado que &#x27;cheira a barro&#x27; — acima da Hardvision (tee R$109,90) e abaixo de Carnan/Piet (R$180-280), ancorado em R$129-139. Restraint = qualidade (gramatura 300g, etiqueta tecida de gola, bordado 3D, embalagem como ritual). NÃO punk-zine, NÃO mascote-cartoon, NÃO &#x27;camiseta técnica respirável&#x27; (guerra de preço perdida contra ASW/Mauro Ribeiro). O modelo é Howies (casal-fundador + lugar + valores + tiragem pequena), a estética é loam tropical de Ibiraquera/Imbituba que nenhum concorrente global (frio/seco/americano/monolíngue) ou nacional (DIRT DAD = moto/agressivo) ocupa.</p></div>
+  </div>
+</div></section>
+
+<section id="fases"><div class="wrap">
+  <div class="sec-head"><span class="sec-num">02</span><h2>As 5 Fases</h2></div>
+  <p class="sec-intro">Sequência guiada pela tese — dar antes de vender, cavar antes de colher, filmar antes de fabricar. Cada fase tem frentes de trabalho, entregáveis, orçamento e KPIs próprios.</p>
+  
+    <article class="phase" id="fase-0">
+      <div class="ph-rail"><div class="ph-num">0</div><div class="ph-line"></div></div>
+      <div class="ph-body">
+        <div class="ph-head">
+          <span class="ph-tag">Fundação</span>
+          <span class="ph-when">Semanas 1-3</span>
+        </div>
+        <h3>Fundação — Legal + Digital + Primeiro Objeto Físico</h3>
+        <p class="ph-goal">Existir legalmente, travar o nome em todo lugar, e ter o primeiro objeto físico distribuível (sticker) na mão — sem travar capital em estoque de apparel.</p>
+        <div class="ws-grid"><div class="ws"><div class="ws-name">Legal</div><ul><li>Busca de anterioridade gratuita de PATCHO + variações fonéticas (PACHO, PATCHÔ, PATCH) no e-Marcas ANTES de pagar GRU</li><li>Abrir MEI no Portal do Empreendedor com CNAE 4781-4/00 (comércio varejista de vestuário) — grátis, CNPJ na hora — ANTES de depositar a marca para garantir desconto INPI de 50%</li><li>Solicitar Inscrição Estadual na SEF/SC para emitir NF-e de mercadoria</li><li>Depositar marca PATCHO no INPI classe 25, nominativa + figurativa (R$880) se houver caixa; só mista (R$440) se apertar</li><li>Confirmar com contador o CNAE secundário correto para evitar enquadramento como &#x27;industrialização por encomenda&#x27; (1412-6/01, fora do MEI); modelo = produção terceirizada + revenda (comércio), NUNCA fabricação própria em escala</li></ul></div><div class="ws"><div class="ws-name">Digital</div><ul><li>Registrar patcho.com.br no registro.br por 5 anos (R$174, trava nome+preço)</li><li>Registrar patchoco.com em provedor com WHOIS privacy grátis (Cloudflare a preço de custo) — checar preço de RENOVAÇÃO antes de fechar</li><li>Montar Nuvemshop Plano Começo (R$0) + Nuvem Pago com Pix em destaque</li><li>Integrar Melhor Envio desde o dia 1 — PAC para itens leves, SEDEX como upsell</li><li>Confirmar agência Correios / Ponto Parceiro Melhor Envio mais próximo de Ibiraquera-Imbituba e frequência de coleta</li></ul></div><div class="ws"><div class="ws-name">Produto</div><ul><li>Encomendar 1.000 stickers de vinil LAMINADO 5x5cm (~R$200-500) — primeiro objeto físico, exigir laminado p/ resistir sol/abrasão</li><li>Pedir cotação formal de 100 patches bordados 7-8cm (Eagle Patches / Toca dos Bordados) com a arte do ícone &#x27;lip&#x27; — programação grátis</li><li>Pedir amostra de etiqueta tecida de gola (Artezanet, MOQ 100, amostra 15-20 dias úteis) — confirmar jacquard-woven vs tafetá</li></ul></div></div>
+        <div class="ph-foot">
+          <div class="ph-col"><div class="mini-h">Entregáveis</div><div class="pills"><span class='pill'>CNPJ MEI ativo + Inscrição Estadual</span><span class='pill'>Marca PATCHO depositada no INPI (nº de processo = anterioridade desde o protocolo)</span><span class='pill'>patcho.com.br + patchoco.com registrados</span><span class='pill'>Loja Nuvemshop no ar (modo rascunho) com Pix + Melhor Envio</span><span class='pill'>1.000 stickers laminados em mãos</span><span class='pill'>Cotações formais de patch e etiqueta tecida</span></div></div>
+          <div class="ph-col"><div class="mini-h">KPIs</div><ul class="kpi"><li>Marca depositada (1 nº de processo INPI)</li><li>Loja publicável em &lt;3 semanas</li><li>1.000 stickers prontos para distribuir em qualquer trilha</li></ul></div>
+          <div class="ph-col"><div class="mini-h">Orçamento da fase</div><div class="budg"><div class='bl'><span>MEI + INPI 2 formas + 2 domínios</span><b>R$ 1.090–1.470</b></div><div class='bl'><span>1.000 stickers laminados</span><b>R$ 200–500</b></div><div class='bl'><span>DAS MEI (1 mês)</span><b>R$ 82,05</b></div></div></div>
+        </div>
+        <div class='risks'><div class='mini-h'>Riscos</div><ul><li>Squatting de marca se não depositar cedo — risco fatal pois o nome é o ativo central</li><li>Enquadramento errado de CNAE → desenquadramento + multa</li><li>Sticker não-laminado degrada ao sol/suor e parece amador</li></ul></div>
+      </div>
+    </article>
+    <article class="phase" id="fase-1">
+      <div class="ph-rail"><div class="ph-num">1</div><div class="ph-line"></div></div>
+      <div class="ph-body">
+        <div class="ph-head">
+          <span class="ph-tag">Motor</span>
+          <span class="ph-when">Semanas 4-12 (Meses 1-3)</span>
+        </div>
+        <h3>Ligar o Motor — Conteúdo + Semear a Cena</h3>
+        <p class="ph-goal">Construir o pipeline de conteúdo sustentável e aparecer onde a tribo já está, distribuindo stickers e patches. Meta-chave: cruzar 1.000 seguidores no IG para destravar Trial Reels.</p>
+        <div class="ws-grid"><div class="ws"><div class="ws-name">Conteúdo</div><ul><li>Estruturar pipeline: gravar pesado em sessões batch → &#x27;The Backyard Build&#x27; (long-form quinzenal âncora) → Opus Clip (cortes 9:16) → CapCut (refino/marca PT-EN)</li><li>Escrever todo hook ANTES de gravar: abrir no send/whip/quase-acidente, texto 4-7 palavras na tela, NUNCA logo ou &#x27;fala galera&#x27;</li><li>Lançar séries recorrentes: His &amp; Hers (o casal É o diferencial), Foam to Dirt, Wipeout Wednesday, Sunset Session</li><li>Bater 3-5 Reels/semana + 1 long-form quinzenal + 1-2 Stories/dia; teto ~5 posts/sem/plataforma p/ evitar burnout</li><li>SEO de micro-nicho (#dirtjump #pumptrack #trilhasc) + legendas bilíngues PT/EN com keywords; JAMAIS comprar seguidores (shadowban 14 dias)</li></ul></div><div class="ws"><div class="ws-name">Comunidade</div><ul><li>Semear antes de colher: aparecer em sessões existentes (Floripa, Criciúma, &#x27;pedreira&#x27; SC) distribuindo stickers/patches por meses</li><li>Entrar nos canais-semente: grupos Facebook &#x27;Dirt jump Bmx Brasil&#x27; + &#x27;Dirt Jumpers&#x27;, fixar trilha oficial no Trailforks/komoot</li><li>Recrutar 3-5 riders respeitados do corredor Floripa–Sul SC como embaixadores fundadores (futuro júri do Selo)</li><li>Abordar lojas locais como &#x27;casa do parche&#x27;: Nativus (Imbituba), Aro 3 e Ao Sul Natural (Garopaba) — oferecer conteúdo+presença, NÃO dinheiro</li></ul></div><div class="ws"><div class="ws-name">Produto</div><ul><li>Receber lote de 100 patches bordados + 100 etiquetas tecidas</li><li>DAR patches (não vender) a quem cava/anda — token de membro ganho, não comprado</li><li>Validar artes de tee via POD Dimona/Montink (risco zero de estoque) — descobrir qual arte engaja antes de travar capital</li></ul></div></div>
+        <div class="ph-foot">
+          <div class="ph-col"><div class="mini-h">Entregáveis</div><div class="pills"><span class='pill'>Pipeline de conteúdo rodando (1 long-form + 3-5 Reels/sem)</span><span class='pill'>≥1.000 seguidores no IG (destrava Trial Reels)</span><span class='pill'>3-5 embaixadores fundadores recrutados</span><span class='pill'>1 loja local como &#x27;casa do parche&#x27;</span><span class='pill'>Lista de espera de pré-venda crescendo</span></div></div>
+          <div class="ph-col"><div class="mini-h">KPIs</div><ul class="kpi"><li>Cruzar 1.000 seguidores IG</li><li>Viewed-vs-Swiped ≥75% nos Reels</li><li>Watch time + share rate + save rate em alta (não follower count bruto)</li><li>Núcleo de comentaristas recorrentes formado (&#x27;o parche&#x27;)</li><li>ER de nicho &gt;3% (vs média 0,48%)</li></ul></div>
+          <div class="ph-col"><div class="mini-h">Orçamento da fase</div><div class="budg"><div class='bl'><span>100 patches bordados (âncora)</span><b>R$ 1.300–1.600</b></div><div class='bl'><span>100 etiquetas tecidas</span><b>R$ 60–150</b></div><div class='bl'><span>Stack conteúdo (Opus Starter, 3 meses)</span><b>R$ 240–420</b></div><div class='bl'><span>DAS MEI (3 meses)</span><b>R$ 246</b></div></div></div>
+        </div>
+        <div class='risks'><div class='mini-h'>Riscos</div><ul><li>Burnout da dupla sem produção em lote disciplinada</li><li>Trial Reels travado até 1k — ler Insights na mão na fase 0</li><li>Expectativa de viral: crescimento honesto é 300-2.000 seguidores em 90 dias</li><li>Opus Clip favorece fala limpa — ação pura pode exigir mais corte manual</li><li>Polimento excessivo mata o nicho (autenticidade crua &gt; produção de agência)</li></ul></div>
+      </div>
+    </article>
+    <article class="phase" id="fase-2">
+      <div class="ph-rail"><div class="ph-num">2</div><div class="ph-line"></div></div>
+      <div class="ph-body">
+        <div class="ph-head">
+          <span class="ph-tag">Formato</span>
+          <span class="ph-when">Meses 3-5</span>
+        </div>
+        <h3>Achar o Formato — Dig Days + Pré-venda</h3>
+        <p class="ph-goal">Transformar a audiência em comunidade física via dig days near-free, e validar disposição a pagar via pré-venda antes de qualquer tiragem cheia.</p>
+        <div class="ws-grid"><div class="ws"><div class="ws-name">Comunidade</div><ul><li>Rodar dig days (~R$150-400, caçamba de saibro): a igreja onde o patch é GANHO — o conteúdo mais autêntico (&#x27;cheira a barro&#x27;)</li><li>Aplicar a regra não-escrita BR: quem anda, cava — usar o dig day para entregar os primeiros patches ganhos</li><li>Confirmar acesso a terra privada adequada (espaço p/ jumps + acesso de veículo + estacionamento) para futuros jams</li><li>Confirmar diretamente com prefeituras de Imbituba e Garopaba os thresholds de alvará (público vs privado, lotação, ingresso)</li></ul></div><div class="ws"><div class="ws-name">Produto</div><ul><li>Abrir pré-venda da camiseta com Pix antecipado — o cliente financia o estoque (capital de giro ~R$0)</li><li>Agendar visita presencial a Lunfe Malhas (Itajaí) ou Monte Leste (Brusque) — ~2h de Ibiraquera — para amostra física do blank heavyweight e negociação direta</li><li>Encomendar etiqueta tecida de gola desde a primeira camiseta — detalhe barato que transforma &#x27;estampa&#x27; em &#x27;marca&#x27;</li><li>Definir grade enxuta (mais M/G, 1-2 artes) para evitar encalhe — maior risco de margem</li></ul></div><div class="ws"><div class="ws-name">Conteúdo</div><ul><li>Documentar os dig days como o coração do storytelling — His&amp;Hers + tribo cavando</li><li>Usar o conteúdo de dig day para abrir a lista de pré-venda (escassez + pertencimento)</li></ul></div></div>
+        <div class="ph-foot">
+          <div class="ph-col"><div class="mini-h">Entregáveis</div><div class="pills"><span class='pill'>≥2 dig days realizados e documentados</span><span class='pill'>Pré-venda da 1ª tee fechada com sell-through validado</span><span class='pill'>Amostra física do blank heavyweight SC aprovada</span><span class='pill'>Thresholds de permit das prefeituras confirmados</span></div></div>
+          <div class="ph-col"><div class="mini-h">KPIs</div><ul class="kpi"><li>≥30 inscritos na lista de pré-venda</li><li>Sell-through de pré-venda ≥60% (gatilho p/ liberar Drop 1 cheio)</li><li>≥20 pessoas em dig day</li><li>Disposição a pagar validada na faixa R$119-149</li></ul></div>
+          <div class="ph-col"><div class="mini-h">Orçamento da fase</div><div class="budg"><div class='bl'><span>2 dig days (caçambas)</span><b>R$ 300–800</b></div><div class='bl'><span>Visita fornecedor SC (combustível/amostras)</span><b>R$ 200–400</b></div><div class='bl'><span>DAS MEI (2 meses)</span><b>R$ 164</b></div></div></div>
+        </div>
+        <div class='risks'><div class='mini-h'>Riscos</div><ul><li>SC sazonal: inverno chuvoso = trilha molhada → pivotar p/ conteúdo/dig day, não jam</li><li>Encalhe de grade = maior dreno de capital bootstrapped — DTF sob demanda mitiga</li><li>Sem terra privada adequada, a cadência de jam muda</li></ul></div>
+      </div>
+    </article>
+    <article class="phase" id="fase-3">
+      <div class="ph-rail"><div class="ph-num">3</div><div class="ph-line"></div></div>
+      <div class="ph-body">
+        <div class="ph-head">
+          <span class="ph-tag">Drop + Jam</span>
+          <span class="ph-when">Meses 5-7 (mirar verão seco SC, Dez-Abr p/ o jam)</span>
+        </div>
+        <h3>1º Drop + 1º Jam</h3>
+        <p class="ph-goal">Lançar o Drop 1 lean para a tribo já aquecida e coroar com o primeiro backyard jam privado — patches ganhos viram patches comprados.</p>
+        <div class="ws-grid"><div class="ws"><div class="ws-name">Produto</div><ul><li>Produzir Drop 1 lean: 50 patches + stickers + 40 tees heavyweight de 1-2 artes vencedoras (batch local SC nas que venderam na pré-venda)</li><li>Precificar: tee R$129-139 (Pix), patch R$44, kit sticker R$24, boné R$99 — empurrar Pix com 5% de desconto vs absorver cartão</li><li>Frete grátis acima de ~R$199 para subir ticket médio; repassar parcelamento acima de 3x</li><li>Migrar arte de &gt;50un de DTF para serigrafia (compensa a partir de 30-50un)</li></ul></div><div class="ws"><div class="ws-name">Comunidade</div><ul><li>Realizar o 1º backyard jam PRIVADO, FREE, em terra própria/emprestada, sem venda de ingresso — evita alvará/Bombeiros/RC</li><li>Não-cortáveis mesmo em jam privado: seguro AP (R$507-900) + termo de responsabilidade assinado + capacete obrigatório (valor de marca) + socorrista designado + acesso de ambulância mapeado</li><li>Distribuir patch numerado/edição de jam (relíquia) aos participantes — tier acima do patch padrão</li></ul></div><div class="ws"><div class="ws-name">Conteúdo</div><ul><li>Tratar o jam como o evento de marketing do trimestre — filmar como o long-form âncora</li><li>Cobertura His&amp;Hers do drop + jam para o feed e cortes verticais</li></ul></div><div class="ws"><div class="ws-name">Legal</div><ul><li>Monitorar receita mensal vs teto MEI (R$81k/ano; &gt;R$97,2k = desenquadramento retroativo c/ multa)</li><li>Confirmar emissão de NF nas vendas PJ e marketplaces</li></ul></div></div>
+        <div class="ph-foot">
+          <div class="ph-col"><div class="mini-h">Entregáveis</div><div class="pills"><span class='pill'>Drop 1 no ar e vendendo</span><span class='pill'>1º jam privado realizado e documentado em vídeo</span><span class='pill'>Patch de edição de jam distribuído</span><span class='pill'>Break-even do Drop 1 atingido</span></div></div>
+          <div class="ph-col"><div class="mini-h">KPIs</div><ul class="kpi"><li>Sell-through Drop 1 ≥65% (break-even)</li><li>Ticket médio &gt;R$130</li><li>≥30 riders no 1º jam</li><li>&gt;80% das vendas em Pix (liquidez imediata)</li><li>Margem bruta realizada ≥50% no tee, ≥65% no patch</li></ul></div>
+          <div class="ph-col"><div class="mini-h">Orçamento da fase</div><div class="budg"><div class='bl'><span>Drop 1 lean (50 patches + stickers + 40 tees + embalagem)</span><b>R$ 3.500–4.500</b></div><div class='bl'><span>1º jam (terra própria, AP incluso)</span><b>R$ 1.500–4.500</b></div><div class='bl'><span>DAS MEI (2 meses)</span><b>R$ 164</b></div></div></div>
+        </div>
+        <div class='risks'><div class='mini-h'>Riscos</div><ul><li>Jam subseguro expõe Tiago &amp; Jaluza civil e criminalmente — termo NÃO substitui AP</li><li>Marca vista como extraindo da cena → tribo rejeita (tensão &#x27;poser&#x27;)</li><li>Jam agendado na época errada morre na chuva</li><li>Cartão parcelado corrói margem se não houver incentivo forte a Pix</li></ul></div>
+      </div>
+    </article>
+    <article class="phase" id="fase-4">
+      <div class="ph-rail"><div class="ph-num">4</div><div class="ph-line"></div></div>
+      <div class="ph-body">
+        <div class="ph-head">
+          <span class="ph-tag">Escala</span>
+          <span class="ph-when">Meses 7-12+</span>
+        </div>
+        <h3>Depois do Lançamento — Escala + Selo do Ano</h3>
+        <p class="ph-goal">Compor crescimento, adicionar SKUs de maior capital só após validação, e cunhar legitimidade cultural com o prêmio anual — o ativo de longo prazo da Patcho.</p>
+        <div class="ws-grid"><div class="ws"><div class="ws-name">Produto</div><ul><li>Adicionar boné bordado 3D (Star Caps SC, lead 30 dias úteis) e moletom heavyweight (R$269-329) APENAS após a tee validar demanda — moletom é o maior capital travado</li><li>Drop 2 fundeado pelo lucro do Drop 1</li><li>Continuar pré-venda/tiragem limitada (modelo The Loam Wolf — zera estoque parado)</li></ul></div><div class="ws"><div class="ws-name">Comunidade</div><ul><li>Lançar o Selo do Ano / Parche do Ano: prêmio anual julgado por JÚRI DE PARES (não pela marca) — o playbook exato do Thrasher SOTY</li><li>Realizar sempre na mesma época (Mar-Abr, verão seco SC) e documentar a cerimônia como o vídeo de marketing do ano</li><li>Entregar patch numerado raro + troféu artesanal loam (cerâmica/madeira, R$100-400) — raridade &gt; custo</li></ul></div><div class="ws"><div class="ws-name">Legal</div><ul><li>Definir gatilho de migração para ME/Simples (Anexo I, 4% efetivo): ao se aproximar de ~R$70k/ano OU ao internalizar produção — contratar contador (R$150-400/mês)</li><li>Depositar INPI fase 2: classe 26 (patches avulsos) se vendidos como SKU, classe 41 (conteúdo) se monetizar canal/IP</li></ul></div><div class="ws"><div class="ws-name">Conteúdo</div><ul><li>Escalar stack (Opus Pro ~R$155-185/mês, vidIQ Pro ~R$55) só quando o volume justificar</li><li>Montar vitrine Fourthwall em patchoco.com para audiência EN (zero estoque, zero alfândega, merchant of record) — pedir amostra antes p/ checar padrão Loam Premium</li></ul></div></div>
+        <div class="ph-foot">
+          <div class="ph-col"><div class="mini-h">Entregáveis</div><div class="pills"><span class='pill'>1ª edição do Selo do Ano realizada e documentada</span><span class='pill'>Boné + moletom no catálogo (pós-validação)</span><span class='pill'>Braço global EN via Fourthwall no ar</span><span class='pill'>Plano de migração MEI→ME definido com contador</span></div></div>
+          <div class="ph-col"><div class="mini-h">KPIs</div><ul class="kpi"><li>1.000+ seguidores convertidos em compradores recorrentes</li><li>Selo do Ano com cobertura/buzz na cena BR</li><li>Receita anualizada vs teto MEI monitorada</li><li>Moletom com sell-through ≥60% sem encalhe de grade</li></ul></div>
+          <div class="ph-col"><div class="mini-h">Orçamento da fase</div><div class="budg"><div class='bl'><span>Selo do Ano 1ª edição</span><b>R$ 3.000–6.000</b></div><div class='bl'><span>Boné lote 24 (Star Caps)</span><b>R$ 1.000+</b></div><div class='bl'><span>Moletom lote 30 (após validação)</span><b>R$ 2.500–4.000</b></div><div class='bl'><span>Contador ME (quando migrar)</span><b>R$ 150–400/mês</b></div></div></div>
+        </div>
+        <div class='risks'><div class='mini-h'>Riscos</div><ul><li>Selo perde poder se executado de forma inconsistente — valor está em repetir todo ano com o mesmo código</li><li>Moletom cedo demais descapitaliza o bootstrap</li><li>Desenquadramento retroativo do MEI se ultrapassar R$97,2k/ano</li><li>Câmbio pressiona COGS de blanks/insumos DTF importados — revisar preço a cada drop</li><li>Fourthwall reduz controle de material/margem da peça premium</li></ul></div>
+      </div>
+    </article>
+</div></section>
+
+<section id="7dias"><div class="wrap">
+  <div class="sec-head"><span class="sec-num">03</span><h2>Os Primeiros 7 Dias</h2></div>
+  <p class="sec-intro">O arranque concreto: travar o nome (o ativo nº1), existir legalmente, e ter o primeiro objeto físico a caminho — antes de gastar com estoque de roupa.</p>
+  <div class="days"><div class='day'><div class='day-n'>1</div><div class='day-t'>Dia 1: Busca de anterioridade gratuita de PATCHO + variações fonéticas (PACHO, PATCHÔ, PATCH) no e-Marcas — confirma que o nome está livre ANTES de gastar.</div></div><div class='day'><div class='day-n'>2</div><div class='day-t'>Dia 1: Abrir MEI no Portal do Empreendedor com CNAE 4781-4/00 (comércio de vestuário) — CNPJ na hora, e este CNPJ vira o requerente no INPI (garante desconto de 50%).</div></div><div class='day'><div class='day-n'>3</div><div class='day-t'>Dia 2: Registrar patcho.com.br no registro.br por 5 anos (R$174) e patchoco.com em provedor com WHOIS privacy grátis (Cloudflare) — checar preço de renovação.</div></div><div class='day'><div class='day-n'>4</div><div class='day-t'>Dia 3: Encomendar 1.000 stickers de vinil LAMINADO 5x5cm (~R$200-500) — primeiro objeto físico Patcho, exigir laminado. Cotar por CEP de Imbituba.</div></div><div class='day'><div class='day-n'>5</div><div class='day-t'>Dia 4: Pedir orçamento formal de 100 patches bordados 7-8cm (Eagle Patches/Toca dos Bordados) com a arte do ícone &#x27;lip&#x27; + amostra de etiqueta tecida (Artezanet).</div></div><div class='day'><div class='day-n'>6</div><div class='day-t'>Dia 5: Solicitar Inscrição Estadual na SEF/SC e confirmar com contador o CNAE secundário correto para não cair em &#x27;industrialização por encomenda&#x27;.</div></div><div class='day'><div class='day-n'>7</div><div class='day-t'>Dia 6: Montar Nuvemshop Plano Começo + Nuvem Pago (Pix em destaque) + integrar Melhor Envio; confirmar agência Correios/Ponto Parceiro mais próximo de Ibiraquera-Imbituba.</div></div><div class='day'><div class='day-n'>8</div><div class='day-t'>Dia 7: Depositar a marca no INPI classe 25 (nominativa + figurativa se houver caixa) — gera nº de processo = anterioridade desde o protocolo. Gravar o primeiro &#x27;Backyard Build&#x27; p/ alimentar o pipeline de conteúdo.</div></div></div>
+</div></section>
+
+<section id="produto"><div class="wrap">
+  <div class="sec-head"><span class="sec-num">04</span><h2>Escada de Produto</h2></div>
+  <p class="sec-intro">Do token grátis ao prêmio anual. O patch barato é o cartão de entrada no parche; o apparel premium vem depois, financiado por pré-venda.</p>
+  <div class="prod-grid"><div class="prod">
+      <div class="prod-top"><span class="prod-tier">Token de entrada</span><span class="prod-price">Grátis (brinde em todo pedido) / R$24 o kit cartela 4-6un</span></div>
+      <div class="prod-item">Sticker vinil laminado 5x5cm (solto = brinde)</div>
+      <div class="prod-note">COGS &lt;R$1 solto. Mecânica de pertencimento ao &#x27;parche&#x27;. Dado em qualquer trilha/evento — primeiro objeto físico Patcho.</div>
+    </div><div class="prod">
+      <div class="prod-top"><span class="prod-tier">Membership (âncora)</span><span class="prod-price">R$ 39–49</span></div>
+      <div class="prod-item">Patch bordado 7-8cm (ícone &#x27;lip&#x27;)</div>
+      <div class="prod-note">COGS R$13-16/un @100. Margem 65-70%. O coração da marca. DAR cedo (ganho por cavar/andar), VENDER depois. Nunca POD — sempre batch.</div>
+    </div><div class="prod">
+      <div class="prod-top"><span class="prod-tier">Membership premium</span><span class="prod-price">R$ 49–79 (numerado, edição limitada)</span></div>
+      <div class="prod-item">Patch de couro/courino gravado a laser OU patch numerado de edição/jam</div>
+      <div class="prod-note">Visual rústico-premium Loam. Relíquia de jam/founders. COGS quote-only (min ~100un) — pedir orçamento com a arte &#x27;lip&#x27;.</div>
+    </div><div class="prod">
+      <div class="prod-top"><span class="prod-tier">Produto core</span><span class="prod-price">R$ 129–139</span></div>
+      <div class="prod-item">Camiseta heavyweight 300g estampada (etiqueta tecida de gola)</div>
+      <div class="prod-note">COGS R$47-71/un (corrigido). Margem ~50-60%. Posiciona acima da Hardvision (R$109,90). Pré-venda DTF primeiro, batch local SC nas vencedoras.</div>
+    </div><div class="prod">
+      <div class="prod-top"><span class="prod-tier">Acessório</span><span class="prod-price">R$ 89–119</span></div>
+      <div class="prod-item">Boné dad-cap bordado 3D (Star Caps SC)</div>
+      <div class="prod-note">One-size, zero risco de grade. Lead até 30 dias úteis — planejar p/ drop. Custo lower-bound R$22-40 não confirmado.</div>
+    </div><div class="prod">
+      <div class="prod-top"><span class="prod-tier">Topo (2º momento)</span><span class="prod-price">R$ 269–329</span></div>
+      <div class="prod-item">Moletom hoodie heavyweight 320g</div>
+      <div class="prod-note">COGS R$70-100/un. Margem 63-79%. Maior capital travado + risco de grade — SÓ após tee validar, idealmente no inverno.</div>
+    </div><div class="prod">
+      <div class="prod-top"><span class="prod-tier">Selo (anual)</span><span class="prod-price">Não-vendável (prêmio, júri de pares)</span></div>
+      <div class="prod-item">Parche do Ano — patch numerado raro + troféu artesanal</div>
+      <div class="prod-note">O ativo cultural de longo prazo. Raridade &gt; custo. Cunha legitimidade como o Thrasher SOTY. Repetir TODO ano com o mesmo código.</div>
+    </div></div>
+</div></section>
+
+<section id="orcamento"><div class="wrap">
+  <div class="sec-head"><span class="sec-num">05</span><h2>Orçamento</h2></div>
+  <div class="bud-hero">
+    <div class="bud-card lean"><div class="bl2">Cenário Lean — Drop 1</div><div class="bv">R$ 4.000–5.500 (Drop 1 lean: MEI + 1 classe INPI + 2 domínios ~R$550 / + 1.000 stickers laminados ~R$350 / + 100 patches bordados ~R$1.400 / + 100 etiquetas tecidas ~R$150 / + 40 tees heavyweight via batch ou pré-venda DTF ~R$1.600 / + embalagem premium DIY ~R$200 / + stack de conteúdo 1 mês ~R$100)</div></div>
+    <div class="bud-card comf"><div class="bl2">Cenário Confortável</div><div class="bv">R$ 9.000–13.000 (tudo do lean + INPI nominativa+figurativa R$880 + Drop 2 fundeado + fotos pagas + boné Star Caps lote 24 ~R$1.000 + seguro AP de 1 jam ~R$700 + caçamba/dig days + verba criadores/tráfego ~R$1.000)</div></div>
+  </div>
+  <table><thead><tr><th>Categoria</th><th>BRL</th></tr></thead><tbody><tr><td><b>Legal/setup dia 1 (MEI + 1 classe INPI nominativa + patcho.com.br 5 anos + patchoco.com)</b><div class='sub'>DAS MEI comércio 2026 corrigido para R$82,05/mês. INPI classe 25 com desconto MEI R$440/classe — abrir MEI ANTES de depositar.</div></td><td class='num'>R$ 510–590 + R$82,05/mês DAS</td></tr><tr><td><b>INPI 2 formas (nominativa + figurativa, classe 25)</b><div class='sub'>Recomendado se houver caixa: protege nome (ativo nº1) + emblema. Se apertar, só uma mista R$440. Fase 2 (classes 26+41) só quando virarem ativos.</div></td><td class='num'>R$ 880</td></tr><tr><td><b>1.000 stickers vinil laminado 5x5cm</b><div class='sub'>Estimativa de mercado NÃO confirmada por cotação (HGC/Torino/Romana cotam por CEP). Exigir laminado. openQuestion: preço fechado por milheiro.</div></td><td class='num'>R$ 200–500</td></tr><tr><td><b>100 patches bordados 7-8cm (produto-âncora)</b><div class='sub'>Faixa CORRIGIDA conservadora: R$13-16/un @100. Programação grátis confirmada. NÃO usar floor R$8-11. Lead ~12 dias úteis.</div></td><td class='num'>R$ 1.300–1.600</td></tr><tr><td><b>100 etiquetas tecidas de gola (woven label)</b><div class='sub'>MOQ 100/modelo (Artezanet). R$0,15-0,60/un UNVERIFIED (cotação típica @2500un). Amostra 15-20 dias úteis. Detalhe premium obrigatório.</div></td><td class='num'>R$ 60–150</td></tr><tr><td><b>40 camisetas heavyweight (batch local SC OU pré-venda DTF)</b><div class='sub'>COGS heavyweight 300g CORRIGIDO p/ R$47-71/un. Estratégia: validar via POD, pré-venda DTF (capital de giro ~R$0), batch local Lunfe/Monte Leste só nas vencedoras.</div></td><td class='num'>R$ 1.600–2.800</td></tr><tr><td><b>Boné bordado 3D (Star Caps SC, lote 24)</b><div class='sub'>R$22-40/un é LOWER-BOUND não confirmado; premium pode subir. Lead até 30 dias úteis. Fase comfortable, não no Drop 1 lean.</div></td><td class='num'>R$ 1.000+ (estimado)</td></tr><tr><td><b>Embalagem premium DIY por pedido</b><div class='sub'>Kraft + fita + selo/thank-you card. Atacado (Casa do Papelão / Papel Mania-Brás). O selo é branding da &#x27;parche&#x27;.</div></td><td class='num'>R$ 1,50–3,50/un</td></tr><tr><td><b>Stack de conteúdo (Opus Clip Starter + CapCut grátis)</b><div class='sub'>CapCut watermark removal CORRIGIDO ~R$55 (Standard); vidIQ Pro ~R$55 só ao escalar. Início roda no grátis + Opus Starter.</div></td><td class='num'>R$ 80–140/mês</td></tr><tr><td><b>Seguro AP de evento (1 jam) + caçamba dig day</b><div class='sub'>Caçamba region-dependent não confirmada p/ Imbituba (estimativa SP ~R$300). AP avulso 100% digital. Só na fase de 1º Jam.</div></td><td class='num'>R$ 507–900 (AP) + R$ 150–400 (caçamba)</td></tr><tr><td><b>Selo Patcho 1ª edição (prêmio anual)</b><div class='sub'>Jam-as-stage + patch numerado + troféu artesanal loam (R$100-400) + vídeo anual. Raridade &gt; custo. Fase 4.</div></td><td class='num'>R$ 3.000–6.000</td></tr></tbody></table>
+  <div class="notebox"><b>Notas de orçamento (correções da verificação):</b> Todos os valores em BRL, mid-2026, bootstrapped 2 pessoas. CORREÇÕES aplicadas (preferindo o conservador): DAS MEI comércio 2026 = R$82,05/mês (não R$76,90, reajuste salário mínimo R$1.621). Patch bordado 7-8cm = R$13-16/un @100 (NÃO o floor otimista R$8-11; Eagle publica R$16-20/un base). COGS tee heavyweight 300g = R$47-71/un (blank R$37-53 + DTF R$10-18) → margem real ~50-60% a R$129-139, NÃO 60-68%; para 60%+ usar blank 240-280g ou subir preço p/ R$129-169. INPI classe 25 com desconto MEI = R$440/classe (abrir MEI ANTES de depositar). Shopify desatualizado no dossiê: Basic real ~US$19-29/mês, mas NÃO recomendado (custo fixo em USD + surcharge no BR). UNVERIFIED/openQuestions a confirmar por cotação viva: preço por milheiro de sticker laminado (R$200-500 estimado), patch couro laser (R$8-25 quote-only, min ~100un), boné Star Caps (R$22-40 lower-bound, pode subir no premium), etiqueta tecida (R$0,15-0,60/un típico @2500un), caçamba de saibro em Imbituba (R$150-400 estimado de SP), e thresholds de permit das prefeituras de Imbituba/Garopaba. Nuvemshop Essencial corrigido p/ ~R$69 e Impulso R$164 (não R$50-150). CapCut watermark removal ~R$55 e vidIQ Pro ~R$55 (faixas antigas estavam baixas).</div>
+</div></section>
+
+<section id="conteudo"><div class="wrap">
+  <div class="sec-head"><span class="sec-num">06</span><h2>Sistema de Conteúdo</h2></div>
+  <p class="sec-intro">O motor de crescimento. Uma sessão de filmagem em lote vira semanas de conteúdo: o long-form âncora alimenta dezenas de cortes verticais.</p>
+  <div class="cs-grid"><div class="cs">
+   <div class="cs-h"><span class="cs-name">The Backyard Build</span><span class="cs-cad">Quinzenal</span></div>
+   <div class="cs-fmt">YouTube long-form (âncora)</div><div class="cs-note">Gravado em sessões batch — vira 10-20 verticais via Opus Clip → CapCut. A fábrica de matéria-prima do pipeline.</div></div><div class="cs">
+   <div class="cs-h"><span class="cs-name">His &amp; Hers</span><span class="cs-cad">Semanal</span></div>
+   <div class="cs-fmt">Reels/Stories (o casal Tiago &amp; Jaluza)</div><div class="cs-note">O casal É o diferencial narrativo (fosso estilo Howies). Humaniza a marca, dispara ER de nicho 3-6% vs 0,48% média. Lançar cedo.</div></div><div class="cs">
+   <div class="cs-h"><span class="cs-name">Foam to Dirt</span><span class="cs-cad">Semanal</span></div>
+   <div class="cs-fmt">Reels (progressão foam pit → terra)</div><div class="cs-note">Jornada de aprendizado/segurança — conteúdo de processo que clusteriza no algoritmo.</div></div><div class="cs">
+   <div class="cs-h"><span class="cs-name">Wipeout Wednesday</span><span class="cs-cad">Semanal (quarta)</span></div>
+   <div class="cs-fmt">Reels (quedas/bastidores)</div><div class="cs-note">Autenticidade crua &gt; produção de agência. Abre no quase-acidente (hook explosivo 0-3s).</div></div><div class="cs">
+   <div class="cs-h"><span class="cs-name">Sunset Session</span><span class="cs-cad">Semanal</span></div>
+   <div class="cs-fmt">Reels/Stories (estética loam tropical)</div><div class="cs-note">Verde-mata + barro vermelho de SC — o ativo visual que nenhum concorrente tem. Fotografar barro ÚMIDO, não poeira seca.</div></div><div class="cs">
+   <div class="cs-h"><span class="cs-name">Dig Day Diaries</span><span class="cs-cad">A cada dig day</span></div>
+   <div class="cs-fmt">Reels + corte no long-form</div><div class="cs-note">Onde o patch é ganho — o conteúdo mais autêntico (&#x27;cheira a barro&#x27;) e a abertura natural da lista de pré-venda.</div></div></div>
+</div></section>
+
+<section id="canais"><div class="wrap">
+  <div class="sec-head"><span class="sec-num">07</span><h2>Stack de Canais</h2></div>
+  <table><thead><tr><th>Canal</th><th>Escolha</th><th>Nota</th></tr></thead><tbody><tr><td><b>Loja BR (mãe)</b></td><td>Nuvemshop Plano Começo (R$0/mês) + Nuvem Pago</td><td class='sub'>Produtos ilimitados, 0% tarifa de plataforma, tema premium alinhado a Loam. Subir p/ Essencial (~R$69) ou Impulso (R$164) só em escala — Escala R$449 não cedo.</td></tr><tr><td><b>Pagamento herói</b></td><td>Pix via Nuvem Pago (0,99%, sem chargeback, recebimento na hora)</td><td class='sub'>80%+ dos adultos. Desconto 5% no Pix é superior a absorver cartão (4,69-5,69% +R$0,35 no plano Começo). Nuvem Pago NÃO antecipa recebíveis — contar com Pix p/ liquidez.</td></tr><tr><td><b>Frete nacional</b></td><td>Melhor Envio (PAC itens leves, SEDEX upsell)</td><td class='sub'>Até ~80% mais barato que balcão. Patches/stickers via PAC Mini (~R$12-22 SE/Sul); tee heavyweight provavelmente PAC comum. Contrato direto Correios a partir de ~50 envios/mês.</td></tr><tr><td><b>Audiência conteúdo</b></td><td>Instagram (Reels) + YouTube (long-form âncora) + TikTok</td><td class='sub'>IG p/ tribo + Trial Reels (1k+); YouTube &#x27;The Backyard Build&#x27; é a fábrica de matéria-prima; TikTok como search engine. Bilíngue PT/EN.</td></tr><tr><td><b>Braço global EN</b></td><td>Fourthwall em patchoco.com (POD + merchant of record)</td><td class='sub'>Zero estoque, zero alfândega, recolhe VAT/sales tax. Sem Pix, menos controle de material. NÃO abrir frete internacional próprio (Exporta Fácil pode superar valor do produto).</td></tr><tr><td><b>Canais-semente da cena</b></td><td>Grupos Facebook &#x27;Dirt jump Bmx Brasil&#x27; + &#x27;Dirt Jumpers&#x27;, Trailforks/komoot, lojas locais (Nativus/Aro 3/Ao Sul)</td><td class='sub'>Semear antes de colher: aparecer em sessões SC distribuindo stickers/patches por meses antes do evento próprio.</td></tr></tbody></table>
+</div></section>
+
+<section id="legal"><div class="wrap">
+  <div class="sec-head"><span class="sec-num">08</span><h2>Checklist Legal</h2></div>
+  <p class="sec-intro">O mínimo para vender legalmente, emitir nota fiscal e proteger o nome no Brasil — na ordem certa (abrir MEI antes do INPI garante 50% de desconto).</p>
+  <table><thead><tr><th>Item</th><th>Custo</th><th>Prazo</th></tr></thead><tbody><tr><td><b>Busca de anterioridade no e-Marcas</b><div class='sub'>PATCHO + variações fonéticas (PACHO, PATCHÔ, PATCH) ANTES de pagar qualquer GRU — evita colisão/recusa</div></td><td class='num'>R$ 0</td><td>Semana 1</td></tr><tr><td><b>Abrir MEI (CNAE 4781-4/00 comércio de vestuário)</b><div class='sub'>Portal do Empreendedor, CNPJ na hora. ANTES de depositar marca p/ garantir desconto INPI de 50%. Modelo = produção terceirizada + revenda (NUNCA fabricação própria em escala)</div></td><td class='num'>R$ 0 (+ R$82,05/mês DAS 2026)</td><td>Semana 1</td></tr><tr><td><b>Inscrição Estadual SEF/SC</b><div class='sub'>Necessária para emitir NF-e de mercadoria nas vendas PJ/marketplaces</div></td><td class='num'>R$ 0</td><td>Semana 1-2</td></tr><tr><td><b>Depósito de marca INPI classe 25</b><div class='sub'>Nominativa (nome, ativo nº1) + figurativa (emblema lip), com desconto MEI. Se apertar, só mista. Protocolo = anterioridade imediata (símbolo MD; ® só na concessão)</div></td><td class='num'>R$ 440 (1 forma) / R$ 880 (2 formas)</td><td>Semana 2-3</td></tr><tr><td><b>Registrar patcho.com.br</b><div class='sub'>registro.br por 5 anos — trava nome+preço, WHOIS privacy grátis PF</div></td><td class='num'>R$ 174 / 5 anos</td><td>Semana 1</td></tr><tr><td><b>Registrar patchoco.com</b><div class='sub'>Provedor com WHOIS privacy grátis (Cloudflare a preço de custo). CHECAR preço de renovação antes de fechar (armadilha 1º ano barato)</div></td><td class='num'>R$ 30–110/ano</td><td>Semana 1</td></tr><tr><td><b>Confirmar CNAE secundário com contador</b><div class='sub'>Evitar enquadramento como &#x27;industrialização por encomenda&#x27; (1412-6/01, fora do MEI) → desenquadramento + multa</div></td><td class='num'>R$ 0–200 (consulta)</td><td>Semana 2</td></tr><tr><td><b>Seguro AP de evento (antes de qualquer jam)</b><div class='sub'>AP avulso 100% digital (Essor/AIG/Previsul) + termo de responsabilidade assinado + capacete obrigatório + socorrista + acesso de ambulância. Termo NÃO substitui AP</div></td><td class='num'>R$ 507–900/jam</td><td>Antes do 1º jam (Fase 3)</td></tr><tr><td><b>INPI fase 2 (classes 26 + 41)</b><div class='sub'>Classe 26 se patch vendido como SKU avulso; classe 41 se conteúdo monetizar. Só quando virarem ativos (caducidade após 5 anos sem uso)</div></td><td class='num'>R$ 880 (2 classes c/ desconto)</td><td>Fase 4</td></tr><tr><td><b>Gatilho de migração MEI → ME/Simples</b><div class='sub'>Ao se aproximar de ~R$70k/ano OU internalizar produção. Anexo I = 4% efetivo até R$180k. Monitorar teto MEI R$81k (&gt;R$97,2k = retroativo c/ multa)</div></td><td class='num'>Contador R$150–400/mês + abertura R$200–800</td><td>Fase 4 (quando o gatilho disparar)</td></tr></tbody></table>
+</div></section>
+
+<section id="fornecedores"><div class="wrap">
+  <div class="sec-head"><span class="sec-num">09</span><h2>Fornecedores & Ferramentas</h2></div>
+  <p class="sec-intro">Edge regional: blanks heavyweight e bonés são produzidos em SC, a ~2h de Ibiraquera — visita presencial e frete curto. POD só para validar arte.</p>
+  <div class="sup-grid"><div class="sup"><div class="sup-type">Patch bordado (âncora)</div>
+   <div class="sup-opts">Eagle Patches (MOQ 10, programação grátis) · Toca dos Bordados · Artgraf · Linha Darte</div>
+   <div class="sup-note">R$13-16/un @100 (faixa corrigida conservadora, NÃO R$8-11). Lead ~12 dias úteis. Pedir orçamento formal com a arte &#x27;lip&#x27;.</div></div><div class="sup"><div class="sup-type">Patch couro/courino laser (premium)</div>
+   <div class="sup-opts">Raposo Laser · CRP (min ~100un) · The Hat Store</div>
+   <div class="sup-note">R$8-25/un é estimativa quote-only não corroborada p/ lote pequeno. Pedir orçamento real com a arte.</div></div><div class="sup"><div class="sup-type">Camiseta blank heavyweight (edge regional)</div>
+   <div class="sup-opts">Lunfe Malhas (Itajaí/SC) — #1 pick, 30/1 combed 175g + suedine 300g · Monte Leste (Brusque/SC) — fábrica própria</div>
+   <div class="sup-note">~2h de Ibiraquera — agendar VISITA presencial p/ amostra física + negociação. Desconto progressivo a partir de 20pç. Confirmar se fazem etiqueta de gola embutida.</div></div><div class="sup"><div class="sup-type">Boné</div>
+   <div class="sup-opts">Star Caps (SC, MOQ 24, bordado 3D, lead 30 dias úteis) · Agrafisil (SP, MOQ 25, R$16,50-36,50) · Box10</div>
+   <div class="sup-note">Star Caps em SC = vantagem de frete+visita. Preço quote-only, lower-bound R$22-40 não confirmado.</div></div><div class="sup"><div class="sup-type">Etiqueta tecida de gola</div>
+   <div class="sup-opts">Artezanet (MOQ 100/modelo, amostra 15-20 dias úteis) · BestLabels · Etiquetas Brasil</div>
+   <div class="sup-note">Detalhe premium obrigatório. Confirmar jacquard-woven vs tafetá ao cotar. R$0,15-0,60/un unverified (cotação típica @2500un).</div></div><div class="sup"><div class="sup-type">Sticker vinil laminado</div>
+   <div class="sup-opts">HGC · Gráfica Romana (lead 4 dias) · Gráfica Torino · Rei do Sticker (durabilidade 3 anos) · A Panda</div>
+   <div class="sup-note">EXIGIR laminado p/ resistir sol/abrasão. ~R$200-500/milheiro estimado, cotar por CEP de Imbituba.</div></div><div class="sup"><div class="sup-type">Estampa (validação)</div>
+   <div class="sup-opts">Dimona/Dropsimples (DTG, sem mensalidade, emite NF com CPF, integra Nuvemshop) · Montink (full branding)</div>
+   <div class="sup-note">POD SÓ para validar qual arte vende — não entrega o blank 300g + etiqueta + acabamento que Loam Premium exige. Migrar p/ batch local nas vencedoras.</div></div><div class="sup"><div class="sup-type">Embalagem premium</div>
+   <div class="sup-opts">Casa do Papelão · Papel Mania-Brás</div>
+   <div class="sup-note">Comprar atacado. Kraft + fita + selo/thank-you card = branding da &#x27;parche&#x27;. R$1,50-3,50/pedido.</div></div></div>
+  <h3 style="font-family:'Bebas Neue';font-size:24px;letter-spacing:.03em;margin:34px 0 8px;color:var(--bone)">Stack de Ferramentas</h3>
+  <table><thead><tr><th>Necessidade</th><th>Escolha</th><th>Custo</th><th>Nota</th></tr></thead><tbody><tr><td><b>Loja e-commerce BR</b></td><td>Nuvemshop Plano Começo</td><td class='num'>R$ 0/mês</td><td class='sub'>0% tarifa de plataforma, produtos ilimitados, integra Dimona/Montink + Melhor Envio nativamente.</td></tr><tr><td><b>Pagamento</b></td><td>Nuvem Pago (Pix herói 0,99%)</td><td class='num'>0,99% Pix / 4,69-5,69%+R$0,35 cartão</td><td class='sub'>Plano Começo trava em Nuvem Pago + Nuvem Envio. Não antecipa recebíveis.</td></tr><tr><td><b>Frete</b></td><td>Melhor Envio</td><td class='num'>~R$12-22/envio leve SE-Sul</td><td class='sub'>Integração grátis, até ~80% desconto vs balcão.</td></tr><tr><td><b>Geração de cortes de vídeo</b></td><td>Opus Clip Starter</td><td class='num'>R$ 80–95/mês</td><td class='sub'>ReframeAnything 9:16, legendas 97%. Pro (R$155-185) só ao escalar volume. Favorece fala limpa.</td></tr><tr><td><b>Refino/branding de vídeo</b></td><td>CapCut (free → Standard se precisar)</td><td class='num'>R$ 0 (free) / ~R$55 (Standard) / ~R$105 (Pro 4K)</td><td class='sub'>Free cobre o início. Faixa corrigida — R$45 era irreal p/ 2026.</td></tr><tr><td><b>SEO YouTube</b></td><td>vidIQ (free → Pro)</td><td class='num'>R$ 0 (free) / ~R$55/mês (Pro)</td><td class='sub'>Free permanente serve no começo. Pro só ao escalar long-form.</td></tr><tr><td><b>Braço global EN</b></td><td>Fourthwall (POD físico)</td><td class='num'>0% mensalidade / 2,9%+US$0,30 doméstico, 3,9%+US$0,30 intl</td><td class='sub'>Merchant of record, recolhe VAT/tax. Pedir amostra p/ checar padrão Loam Premium.</td></tr></tbody></table>
+</div></section>
+
+<section id="metricas"><div class="wrap">
+  <div class="sec-head"><span class="sec-num">10</span><h2>Métricas</h2></div>
+  <p class="sec-intro">O que medir — qualidade de engajamento e liquidez (Pix, sell-through) acima de número bruto de seguidores.</p>
+  <div class="met-grid"><div class="met"><div class="met-target">1.000 (destrava Trial Reels)</div>
+   <div class="met-name">Seguidores IG</div><div class="met-when">Mês 3</div></div><div class="met"><div class="met-target">≥75%</div>
+   <div class="met-name">Viewed-vs-Swiped (Reels)</div><div class="met-when">Contínuo a partir do Mês 1</div></div><div class="met"><div class="met-target">&gt;3% (vs média 0,48%)</div>
+   <div class="met-name">Engagement rate de nicho</div><div class="met-when">Mês 2-3</div></div><div class="met"><div class="met-target">≥30</div>
+   <div class="met-name">Inscritos na lista de pré-venda</div><div class="met-when">Mês 4-5</div></div><div class="met"><div class="met-target">≥60% (gatilho p/ Drop 1 cheio)</div>
+   <div class="met-name">Sell-through da pré-venda</div><div class="met-when">Mês 5</div></div><div class="met"><div class="met-target">≥65% (break-even)</div>
+   <div class="met-name">Sell-through do Drop 1</div><div class="met-when">Mês 6-7</div></div><div class="met"><div class="met-target">&gt;80% (liquidez imediata)</div>
+   <div class="met-name">% vendas em Pix</div><div class="met-when">Cada drop</div></div><div class="met"><div class="met-target">≥50% tee / ≥65% patch</div>
+   <div class="met-name">Margem bruta realizada</div><div class="met-when">Cada drop</div></div><div class="met"><div class="met-target">≥30</div>
+   <div class="met-name">Riders no 1º jam</div><div class="met-when">Mês 6-7</div></div><div class="met"><div class="met-target">&lt;R$81k (gatilho migração ~R$70k)</div>
+   <div class="met-name">Receita anual vs teto MEI</div><div class="met-when">Monitorar mensal</div></div></div>
+</div></section>
+
+<section id="riscos"><div class="wrap">
+  <div class="sec-head"><span class="sec-num">11</span><h2>Riscos Críticos</h2></div>
+  <p class="sec-intro">Os dez riscos que matam o projeto — cada um com a mitigação. O nome, a segurança do jam e o capital travado são os três fatais.</p>
+  <div class="crit-grid"><div class="crit"><div class="crit-r">Squatting de marca — terceiro registra PATCHO primeiro e força rebranding (risco fatal, o nome é o ativo central)</div>
+   <div class="crit-m"><span>→</span> Depositar INPI classe 25 na 1ª semana, logo após abrir o MEI. Busca de anterioridade antes; protocolo gera anterioridade imediata.</div></div><div class="crit"><div class="crit-r">Enquadramento errado de CNAE → Receita interpreta como industrialização por encomenda (1412-6/01, fora do MEI) = desenquadramento + multa</div>
+   <div class="crit-m"><span>→</span> Operar SEMPRE como produção terceirizada + revenda (comércio 4781-4/00). Confirmar CNAE secundário com contador antes de faturar.</div></div><div class="crit"><div class="crit-r">Travar capital em estoque cedo demais (moletom/grade cheia) descapitaliza o bootstrap antes de validar demanda</div>
+   <div class="crit-m"><span>→</span> Conteúdo+comunidade primeiro. Validar arte via POD → pré-venda DTF com Pix antecipado (cliente financia o estoque) → batch local só nas vencedoras. Moletom só na Fase 4.</div></div><div class="crit"><div class="crit-r">Jam subseguro expõe Tiago &amp; Jaluza civil e criminalmente; dirt jump tem risco real de lesão grave</div>
+   <div class="crit-m"><span>→</span> Manter jams PRIVADOS/FREE em terra própria. Não-cortáveis: AP (R$507-900) + termo assinado + capacete obrigatório + socorrista + acesso de ambulância. Termo NÃO substitui AP.</div></div><div class="crit"><div class="crit-r">Localismo elitista (lição do surf) — tribo backyard-build escorrega p/ gatekeeping e envelhece mal</div>
+   <div class="crit-m"><span>→</span> Posicionar explicitamente comunidade ABERTA: &#x27;o parche acolhe quem cava&#x27;. Júri de pares no Selo, riders fundadores honrados por respeito, não dinheiro. Dar antes de pedir.</div></div><div class="crit"><div class="crit-r">Cair em &#x27;camiseta técnica respirável&#x27; joga Patcho na guerra de preço contra ASW/Mauro Ribeiro</div>
+   <div class="crit-m"><span>→</span> Vender cultura, não tecido. Liderar com loam tropical (verde-mata + barro vermelho), casal His&amp;Hers, restraint = qualidade. Fosso = refinamento earthy, não spec técnica.</div></div><div class="crit"><div class="crit-r">Burnout da dupla (14-20 peças/semana) ou consistência irregular (punida pelo algoritmo 2026 mais que baixa frequência)</div>
+   <div class="crit-m"><span>→</span> Produção em LOTE disciplinada: 1 sessão de filmagem → semanas de conteúdo via Opus Clip→CapCut. Teto ~5 posts/sem/plataforma. Consistência &gt; frequência.</div></div><div class="crit"><div class="crit-r">Desenquadramento retroativo do MEI ao ultrapassar R$97,2k/ano (com multa + juros)</div>
+   <div class="crit-m"><span>→</span> Monitorar receita mensal. Gatilho de migração p/ ME/Simples (Anexo I, 4%) ao se aproximar de ~R$70k/ano — contratar contador antes de estourar o teto.</div></div><div class="crit"><div class="crit-r">Câmbio pressiona COGS (blanks premium + insumos DTF têm componente importado) e margem do tee já é ~50-60% (não 60-68%)</div>
+   <div class="crit-m"><span>→</span> Revisar preço a cada drop. Considerar blank 240-280g (mais barato) para manter 60%+ OU subir tee p/ R$129-169. Empurrar Pix 5% desconto vs absorver cartão.</div></div><div class="crit"><div class="crit-r">Selo do Ano perde poder se executado de forma inconsistente — uma edição única não tem força</div>
+   <div class="crit-m"><span>→</span> Repetir TODO ano na mesma época (Mar-Abr, verão seco SC) com o mesmo código e júri de pares. O valor está inteiramente na repetição ritual.</div></div></div>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="big">PAT<span>CHO</span> — Born in the yard. Built on dirt.</div>
+  <p style="margin-top:14px;max-width:720px">Roadmap gerado a partir de pesquisa profunda (7 domínios + verificação adversarial, jun/2026). Valores em BRL, mid-2026, bootstrapped. Fonte editável: <code>roadmap/roadmap.md</code> · evidência por domínio: <code>research/</code> · identidade: <code>brand-kit/patcho-loam-ptbr.html</code>.</p>
+</div></footer>
+</body></html>

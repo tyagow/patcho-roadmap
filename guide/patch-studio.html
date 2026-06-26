@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PATCHO — Studio de Logo & Patch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;600;800;900&family=Barlow+Condensed:wght@500;600;700;800;900&family=Bebas+Neue&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#1B1712;--bg2:#221C16;--bone:#ECE5D6;--bone-dim:#b3a994;--line:#3a3026;
+    --terra:#3B2F25;--barro:#7A6A52;--argila:#B98B5E;--oliva:#6B7150;--osso:#ECE5D6;--carvao:#171109;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--bone);font-family:'Archivo',system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 26px}
+  nav{position:sticky;top:0;z-index:100;background:rgba(18,14,10,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;gap:20px;height:54px}
+  nav .brand{font-family:'Anton';font-size:18px;letter-spacing:.05em}.nav .brand b{color:var(--argila)}
+  nav .brand b{color:var(--argila)}
+  nav a{margin-left:auto;font-family:'Barlow Condensed';font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:13px;color:var(--bone-dim);text-decoration:none}
+  nav a+a{margin-left:18px}
+  nav a:hover{color:var(--argila)}
+  header{padding:56px 0 30px;border-bottom:1px solid var(--line)}
+  .eyebrow{font-family:'Barlow Condensed';text-transform:uppercase;letter-spacing:.28em;font-size:12.5px;color:var(--argila);font-weight:700;margin-bottom:14px}
+  h1{font-family:'Anton';font-size:clamp(40px,7vw,76px);text-transform:uppercase;line-height:.9}
+  h1 b{color:var(--argila)}
+  .lede{max-width:680px;margin-top:16px;color:var(--bone-dim);font-size:17px}
+  .howto{display:inline-flex;align-items:center;gap:10px;margin-top:20px;background:rgba(185,139,94,.12);border:1px solid var(--argila);border-radius:30px;padding:8px 18px;font-size:14px;color:var(--bone)}
+  section{padding:48px 0;border-bottom:1px solid var(--line)}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px;flex-wrap:wrap}
+  .sec-num{font-family:'Space Mono';color:var(--argila);font-size:14px;font-weight:700}
+  h2{font-family:'Anton';text-transform:uppercase;font-size:clamp(28px,4.6vw,48px);line-height:.95}
+  .sec-intro{max-width:720px;color:var(--bone-dim);font-size:16px;margin-bottom:28px}
+  .toggle-row{display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap}
+  .tg{font-family:'Barlow Condensed';font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:13px;color:var(--bone-dim);background:var(--bg2);border:1px solid var(--line);border-radius:30px;padding:7px 15px;cursor:pointer;user-select:none}
+  .tg.on{background:var(--argila);color:var(--carvao);border-color:var(--argila)}
+  /* grids */
+  .grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+  .grid.lip{grid-template-columns:repeat(4,1fr)}
+  .opt{background:var(--bg2);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:.18s;cursor:pointer;position:relative}
+  .opt:hover{border-color:var(--argila);transform:translateY(-3px)}
+  .opt.pick{border-color:var(--argila);box-shadow:0 0 0 2px var(--argila) inset}
+  .stage{display:flex;align-items:center;justify-content:center;padding:18px;min-height:158px;transition:.2s}
+  .stage.light{background:var(--osso)}
+  .stage.dark{background:var(--terra)}
+  .stage.olive{background:var(--oliva)}
+  .stage svg{width:100%;height:auto;max-height:124px}
+  .cap{display:flex;justify-content:space-between;align-items:center;padding:9px 13px;border-top:1px solid var(--line)}
+  .cap .id{font-family:'Space Mono';font-weight:700;font-size:13px;color:var(--argila)}
+  .cap .dsc{font-size:11px;color:var(--bone-dim);text-align:right;font-family:'Barlow Condensed';text-transform:uppercase;letter-spacing:.05em}
+  .pickdot{position:absolute;top:8px;right:8px;width:18px;height:18px;border-radius:50%;border:2px solid var(--bone-dim);background:transparent;opacity:.5;transition:.15s}
+  .opt.pick .pickdot{background:var(--argila);border-color:var(--argila);opacity:1}
+  .picked-bar{position:sticky;bottom:0;z-index:90;background:rgba(23,17,9,.96);backdrop-filter:blur(10px);border-top:1px solid var(--argila);padding:12px 0}
+  .picked-bar .wrap{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .picked-bar .lbl{font-family:'Barlow Condensed';font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:13px;color:var(--argila)}
+  .picked-bar .list{font-family:'Space Mono';font-size:14px;color:var(--bone)}
+  .picked-bar button{margin-left:auto;font-family:'Barlow Condensed';font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:13px;background:var(--argila);color:var(--carvao);border:none;border-radius:8px;padding:9px 16px;cursor:pointer}
+  footer{padding:40px 0 80px;color:var(--bone-dim);font-size:14px}
+  @media(max-width:980px){.grid{grid-template-columns:repeat(3,1fr)}.grid.lip{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:640px){.grid,.grid.lip{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">PAT<b>CHO</b> · STUDIO</div>
+    <a href="#patches">Patches (20)</a>
+    <a href="#lip">Ícone da Lip (12)</a>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Definir Logo & Patch · Direção Loam Premium</div>
+    <h1>Escolhe os <b>finalistas</b></h1>
+    <p class="lede">Refiz o <b>patch</b> com as camadas <b>retas</b> (sem onda) — 20 variações de forma, borda e composição. E refiz o <b>ícone da Lip</b> com pulos que leem de verdade — 12 versões. Clica nos que curtir; eles marcam embaixo. Ou só me fala os números (ex: "P07, P12, L03").</p>
+    <div class="howto">👆 Clica nas opções pra marcar — a lista aparece na barra de baixo</div>
+  </div>
+</header>
+
+<!-- PATCHES -->
+<section id="patches">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">A</span><h2>Patch — 20 variações</h2></div>
+    <p class="sec-intro">Todas com camadas de terra <b>retas</b> (corte de solo / horizonte), na paleta Loam. Variam forma (círculo, escudo, hexágono, oval, fita), borda (ponto de costura, anel sólido, corda) e o que vai no centro. Passe o fundo claro/escuro pra ver como cada uma se comporta.</p>
+    <div class="toggle-row">
+      <span class="tg on" data-bg="light" data-target="patchGrid">Fundo claro</span>
+      <span class="tg" data-bg="dark" data-target="patchGrid">Fundo terra</span>
+      <span class="tg" data-bg="olive" data-target="patchGrid">Fundo oliva</span>
+    </div>
+    <div class="grid" id="patchGrid">
+
+      <!-- P01 circle / 3 strata / stitch -->
+      <div class="opt" data-id="P01"><div class="pickdot"></div><div class="stage light">
+        <svg viewBox="0 0 160 160"><defs><clipPath id="c01"><circle cx="80" cy="80" r="54"/></clipPath><path id="t01" d="M36 80 A44 44 0 0 1 124 80"/><path id="b01" d="M40 80 A40 40 0 0 0 120 80"/></defs>
+        <circle cx="80" cy="80" r="64" fill="#B98B5E"/><circle cx="80" cy="80" r="54" fill="#ECE5D6"/>
+        <g clip-path="url(#c01)"><rect x="26" y="82" width="108" height="14" fill="#D9A05B"/><rect x="26" y="96" width="108" height="14" fill="#6B7150"/><rect x="26" y="110" width="108" height="28" fill="#3B2F25"/></g>
+        <circle cx="80" cy="80" r="54" fill="none" stroke="#3B2F25" stroke-width="2" stroke-dasharray="1.5 5"/>
+        <text font-family="Bebas Neue" font-size="20" fill="#3B2F25" letter-spacing="3"><textPath href="#t01" startOffset="50%" text-anchor="middle">PATCHO</textPath></text>
+        <text font-family="Barlow Condensed" font-weight="700" font-size="9" fill="#6B7150" letter-spacing="2"><textPath href="#b01" startOffset="50%" text-anchor="middle">LOAM PREMIUM</textPath></text></svg>
+      </div><div class="cap"><span class="id">P01</span><span class="dsc">círculo · costura</span></div></div>
+
+      <!-- P02 circle / 4 strata / solid double ring / center band wordmark -->
+      <div class="opt" data-id="P02"><div class="pickdot"></div><div class="stage light">
+        <svg viewBox="0 0 160 160"><defs><clipPath id="c02"><circle cx="80" cy="80" r="56"/></clipPath></defs>
+        <circle cx="80" cy="80" r="64" fill="#3B2F25"/><circle cx="80" cy="80" r="56" fill="#ECE5D6"/>
+        <g clip-path="url(#c02)"><rect x="24" y="40" width="112" height="22" fill="#ECE5D6"/><rect x="24" y="62" width="112" height="18" fill="#D9A05B"/><rect x="24" y="92" width="112" height="16" fill="#6B7150"/><rect x="24" y="108" width="112" height="30" fill="#3B2F25"/>
+        <rect x="24" y="78" width="112" height="16" fill="#171109"/></g>
+        <text x="80" y="91" font-family="Barlow Condensed" font-weight="800" font-size="18" fill="#ECE5D6" text-anchor="middle" letter-spacing="3">PATCHO</text>
+        <circle cx="80" cy="80" r="56" fill="none" stroke="#B98B5E" stroke-width="3"/><circle cx="80" cy="80" r="50" fill="none" stroke="#ECE5D6" stroke-width="1.5"/></svg>
+      </div><div class="cap"><span class="id">P02</span><span class="dsc">faixa central</span></div></div>
+
+      <!-- P03 rounded square / strata / bottom banner -->
+      <div class="opt" data-id="P03"><div class="pickdot"></div><div class="stage light">
+        <svg viewBox="0 0 160 160"><defs><clipPath id="c03"><rect x="28" y="28" width="104" height="104" rx="18"/></clipPath></defs>
+        <rect x="22" y="22" width="116" height="116" rx="22" fill="#B98B5E"/>
+        <rect x="28" y="28" width="104" height="104" rx="18" fill="#ECE5D6"/>
+        <g clip-path="url(#c03)"><rect x="28" y="74" width="104" height="16" fill="#D9A05B"/><rect x="28" y="90" width="104" height="16" fill="#6B7150"/><rect x="28" y="106" width="104" height="26" fill="#3B2F25"/></g>
+        <rect x="28" y="28" width="104" height="104" rx="18" fill="none" stroke="#3B2F25" stroke-width="2" stroke-dasharray="1.5 5"/>
+        <text x="80" y="50" font-family="Bebas Neue" font-size="22" fill="#3B2F25" text-anchor="middle" letter-spacing="3">PATCHO</text></svg>
+      </div><div class="cap"><span class="id">P03</span><span class="dsc">quadrado red.</span></div></div>
+
+      <!-- P04 shield / strata flag -->
+      <div class="opt" data-id="P04"><div class="pickdot"></div><div class="stage light">
+        <svg viewBox="0 0 160 160"><defs><clipPath id="c04"><path d="M80 26 L130 44 Q130 118 80 140 Q30 118 30 44 Z"/></clipPath></defs>
+        <path d="M80 20 L136 40 Q136 120 80 146 Q24 120 24 40 Z" fill="#3B2F25"/>
+        <path d="M80 26 L130 44 Q130 118 80 140 Q30 118 30 44 Z" fill="#ECE5D6"/>
+        <g clip-path="url(#c04)"><rect x="24" y="78" width="112" height="14" fill="#D9A05B"/><rect x="24" y="92" width="112" height="14" fill="#6B7150"/><rect x="24" y="106" width="112" height="40" fill="#3B2F25"/></g>
+        <path d="M80 26 L130 44 Q130 118 80 140 Q30 118 30 44 Z" fill="none" stroke="#B98B5E" stroke-width="2.5"/>
+        <text x="80" y="62" font-family="Barlow Condensed" font-weight="800" font-size="20" fill="#3B2F25" text-anchor="middle" letter-spacing="2">PATCHO</text></svg>
+      </div><div class="cap"><span class="id">P04</span><span class="dsc">escudo</span></div></div>
+
+      <!-- P05 hexagon / P monogram over strata -->
+      <div class="opt" data-id="P05"><div class="pickdot"></div><div class="stage light">
+        <svg viewBox="0 0 160 160"><defs><clipPath id="c05"><polygon points="80,28 128,54 128,106 80,132 32,106 32,54"/></clipPath></defs>
+        <polygon points="80,22 134,51 134,109 80,138 26,109 26,51" fill="#B98B5E"/>
+        <polygon points="80,28 128,54 128,106 80,132 32,106 32,54" fill="#ECE5D6"/>
+        <g clip-path="url(#c05)"><rect x="26" y="84" width="108" height="14" fill="#D9A05B"/><rect x="26" y="98" width="108" height="14" fill="#6B7150"/><rect x="26" y="112" width="108" height="26" fill="#3B2F25"/></g>
+        <text x="80" y="86" font-family="Anton" font-size="44" fill="#3B2F25" text-anchor="middle">P</text>
+        <polygon points="80,28 128,54 128,106 80,132 32,106 32,54" fill="none" stroke="#3B2F25" stroke-width="2"/></svg>
+      </div><div class="cap"><span class="id">P05</span><span class="dsc">hexágono · "P"</span></div></div>
+
+      <!-- P06 circle / strata + lip on horizon -->
+      <div class="opt" data-id="P06"><div class="pickdot"></div><div class="stage light">
+        <svg viewBox="0 0 160 160"><defs><clipPath id="c06"><circle cx="80" cy="80" r="54"/></clipPath><path id="t06" d="M42 80 A38 38 0 0 1 118 80"/></defs>
+        <circle cx="80" cy="80" r="64" fill="#6B7150"/><circle cx="80" cy="80" r="54" fill="#ECE5D6"/>
+        <g clip-path="url(#c06)"><rect x="26" y="98" width="108" height="12" fill="#D9A05B"/><rect x="26" y="110" width="108" height="28" fill="#3B2F25"/>
+        <path d="M40 98 Q86 98 112 72 L130 98 Z" fill="#171109"/></g>
+        <circle cx="80" cy="80" r="54" fill="none" stroke="#3B2F25" stroke-width="2.5"/>
+        <text font-family="Bebas Neue" font-size="17" fill="#3B2F25" letter-spacing="2.5"><textPath href="#t06" startOffset="50%" text-anchor="middle">PATCHO</textPath></text></svg>
+      </div><div class="cap"><span class="id">P06</span><span class="dsc">lip no horizonte</span></div></div>
+
+      <!-- P07 oval horizontal -->
+      <div class="opt" data-id="P07"><div class="pickdot"></div><div class="stage light">
+        <svg viewBox="0 0 160 160"><defs><clipPath id="c07"><ellipse cx="80" cy="80" rx="64" ry="44"/></clipPath></defs>
+        <ellipse cx="80" cy="80" rx="70" ry="50" fill="#3B2F25"/><ellipse cx="80" cy="80" rx="64" ry="44" fill="#ECE5D6"/>
+        <g clip-path="url(#c07)"><rect x="16" y="88" width="128" height="12" fill="#D9A05B"/><rect x="16" y="100" width="128" height="12" fill="#6B7150"/><rect x="16" y="112" width="128" height="24" fill="#3B2F25"/></g>
+        <ellipse cx="80" cy="80" rx="64" ry="44" fill="none" stroke="#B98B5E" stroke-width="2.5"/>
+        <text x="80" y="72" font-family="Bebas Neue" font-size="24" fill="#3B2F25" text-anchor="middle" letter-spacing="3">PATCHO</text>
+        <text x="80" y="84" font-family="Barlow Condensed" font-weight="600" font-size="8" fill="#6B7150" text-anchor="middle" letter-spacing="3">BORN IN THE YARD</text></svg>
+      </div><div class="cap"><span class="id">P07</span><span class="dsc">oval</span></div></div>
+
+      <!-- P08 circle merrow thick argila ring -->
+      <div class="opt" data-id="P08"><div class="pickdot"></div><div class="stage light">
+        <svg viewBox="0 0 160 160"><defs><clipPath id="c08"><circle cx="80" cy="80" r="46"/></clipPath><path id="t08" d="M44 80 A36 36 0 0 1 116 80"/><path id="b08" d="M48 80 A32 32 0 0 0 112 80"/></defs>
+        <circle cx="80" cy="80" r="60" fill="#B98B5E"/><circle cx="80" cy="80" r="46" fill="#ECE5D6"/>
+        <g clip-path="url(#c08)"><rect x="34" y="84" width="92" height="13" fill="#D9A05B"/><rect x="34" y="97" width="92" height="13" fill="#6B7150"/><rect x="34" y="110" width="92" height="20" fill="#3B2F25"/></g>
+        <circle cx="80" cy="80" r="46" fill="none" stroke="#3B2F25" stroke-width="2"/>
+        <text font-family="Bebas Neue" font-size="17" fill="#171109" letter-spacing="3"><textPath href="#t08" startOffset="50%" text-anchor="middle">PATCHO</textPath></text>
+        <text font-family="Space Mono" font-weight="700" font-size="8" fill="#171109" letter-spacing="2"><textPath href="#b08" startOffset="50%" text-anchor="middle">EST. 2026</textPath></text></svg>
+      </div><div class="cap"><span class="id">P08</span><span class="dsc">borda grossa</span></div></div>
+
+      <!-- P09 ribbon banner rect -->
+      <div class="opt" data-id="P09"><div class="pickdot"></div><div class="stage light">
+        <svg viewBox="0 0 160 160"><defs><clipPath id="c09"><rect x="24" y="52" width="112" height="56"/></clipPath></defs>
+        <rect x="24" y="52" width="112" height="56" fill="#ECE5D6" stroke="#3B2F25" stroke-width="2"/>
+        <g clip-path="url(#c09)"><rect x="24" y="92" width="112" height="8" fill="#D9A05B"/><rect x="24" y="100" width="112" height="8" fill="#3B2F25"/></g>
+        <path d="M24 52 L12 64 L24 64 Z M136 52 L148 64 L136 64 Z M24 108 L12 96 L24 96 Z M136 108 L148 96 L136 96 Z" fill="#8a6440"/>
+        <text x="80" y="84" font-family="Barlow Condensed" font-weight="900" font-size="30" fill="#3B2F25" text-anchor="middle" letter-spacing="3">PATCHO</text></svg>
+      </div><div class="cap"><span class="id">P09</span><span class="dsc">fita / banner</span></div></div>
+
+      <!-- P10 sunrise dot over strata -->
+      <div class="opt" data-id="P10"><div class="pickdot"></div><div class="stage light">
+        <svg viewBox="0 0 160 160"><defs><clipPath id="c10"><circle cx="80" cy="80" r="54"/></clipPath><path id="t10" d="M36 80 A44 44 0 0 1 124 80"/><path id="b10" d="M40 80 A40 40 0 0 0 120 80"/></defs>
+        <circle cx="80" cy="80" r="64" fill="#3B2F25"/><circle cx="80" cy="80" r="54" fill="#ECE5D6"/>
+        <g clip-path="url(#c10)"><circle cx="80" cy="98" r="20" fill="#D9A05B"/><rect x="26" y="98" width="108" height="12" fill="#B98B5E"/><rect x="26" y="110" width="108" height="28" fill="#3B2F25"/></g>
+        <circle cx="80" cy="80" r="54" fill="none" stroke="#B98B5E" stroke-width="2.5" stroke-dasharray="1.5 5"/>
+        <text font-family="Bebas Neue" font-size="20" fill="#3B2F25" letter-spacing="3"><textPath href="#t10" startOffset="50%" text-anchor="middle">PATCHO</textPath></text>
+        <text font-family="Barlow Condensed" font-weight="700" font-size="9" fill="#6B7150" letter-spacing="2"><textPath href="#b10" startOffset="50%" text-anchor="middle">BUILT ON DIRT</textPath></text></svg>
+      </div><div class="cap"><span class="id">P10</span><span class="dsc">sol no horizonte</span></div></div>
+
+      <!-- P11 minimal 2-band split -->
+      <div class="opt" data-id="P11"><div class="pickdot"></div><div class="stage light">
+        <svg viewBox="0 0 160 160"><defs><clipPath id="c11"><circle cx="80" cy="80" r="56"/></clipPath></defs>
+        <circle cx="80" cy="80" r="60" fill="#B98B5E"/>
+        <g clip-path="url(#c11)"><rect x="24" y="24" width="112" height="56" fill="#ECE5D6"/><rect x="24" y="80" width="112" height="56" fill="#3B2F25"/></g>
+        <circle cx="80" cy="80" r="56" fill="none" stroke="#171109" stroke-width="2"/>
+        <text x="80" y="86" font-family="Anton" font-size="22" fill="#B98B5E" text-anchor="middle" letter-spacing="1">PATCHO</text></svg>
+      </div><div class="cap"><span class="id">P11</span><span class="dsc">minimal 2 faixas</span></div></div>
+
+      <!-- P12 shield rope + crossed shovels over strata -->
+      <div class="opt" data-id="P12"><div class="pickdot"></div><div class="stage light">
+        <svg viewBox="0 0 160 160"><defs><clipPath id="c12"><path d="M80 28 L128 46 Q128 116 80 138 Q32 116 32 46 Z"/></clipPath></defs>
+        <path d="M80 22 L134 42 Q134 118 80 144 Q26 118 26 42 Z" fill="#3B2F25"/>
+        <path d="M80 28 L128 46 Q128 116 80 138 Q32 116 32 46 Z" fill="#ECE5D6"/>
+        <g clip-path="url(#c12)"><rect x="26" y="100" width="108" height="12" fill="#D9A05B"/><rect x="26" y="112" width="108" height="34" fill="#3B2F25"/></g>
+        <g stroke="#6B7150" stroke-width="5" stroke-linecap="round"><line x1="60" y1="58" x2="100" y2="98"/><line x1="100" y1="58" x2="60" y2="98"/></g>
+        <path d="M57 55 l-5 -6 a7 7 0 0 1 11 0 z" fill="#B98B5E"/><path d="M103 55 l5 -6 a7 7 0 0 0 -11 0 z" fill="#B98B5E"/>
+        <path d="M80 28 L128 46 Q128 116 80 138 Q32 116 32 46 Z" fill="none" stroke="#B98B5E" stroke-width="2.5" stroke-dasharray="4 3"/>
+        <text x="80" y="128" font-family="Barlow Condensed" font-weight="800" font-size="15" fill="#ECE5D6" text-anchor="middle" letter-spacing="2">PATCHO</text></svg>
+      </div><div class="cap"><span class="id">P12</span><span class="dsc">escudo · pás</span></div></div>
+
+      <!-- P13 jumps skyline over strata -->
+      <div class="opt" data-id="P13"><div class="pickdot"></div><div class="stage light">
+        <svg viewBox="0 0 160 160"><defs><clipPath id="c13"><circle cx="80" cy="80" r="54"/></clipPath><path id="b13" d="M40 80 A40 40 0 0 0 120 80"/></defs>
+        <circle cx="80" cy="80" r="64" fill="#6B7150"/><circle cx="80" cy="80" r="54" fill="#ECE5D6"/>
+        <g clip-path="url(#c13)"><path d="M26 100 Q44 80 60 100 Q78 78 96 100 Q114 80 134 100 L134 138 L26 138 Z" fill="#3B2F25"/></g>
+        <circle cx="80" cy="80" r="54" fill="none" stroke="#3B2F25" stroke-width="2.5"/>
+        <text x="80" y="60" font-family="Bebas Neue" font-size="20" fill="#3B2F25" text-anchor="middle" letter-spacing="3">PATCHO</text>
+        <text font-family="Barlow Condensed" font-weight="700" font-size="9" fill="#6B7150" letter-spacing="2"><textPath href="#b13" startOffset="50%" text-anchor="middle">DIRT JUMP CO</textPath></text></svg>
+      </div><div class="cap"><span class="id">P13</span><span class="dsc">linha de jumps</span></div></div>
+
+      <!-- P14 rounded square / P + strata -->
+      <div class="opt" data-id="P14"><div class="pickdot"></div><div class="stage light">
+        <svg viewBox="0 0 160 160"><defs><clipPath id="c14"><rect x="30" y="30" width="100" height="100" rx="10"/></clipPath></defs>
+        <rect x="24" y="24" width="112" height="112" rx="14" fill="#3B2F25"/>
+        <rect x="30" y="30" width="100" height="100" rx="10" fill="#D9A05B"/>
+        <g clip-path="url(#c14)"><rect x="30" y="96" width="100" height="12" fill="#6B7150"/><rect x="30" y="108" width="100" height="24" fill="#3B2F25"/></g>
+        <text x="80" y="92" font-family="Anton" font-size="50" fill="#3B2F25" text-anchor="middle">P</text>
+        <rect x="30" y="30" width="100" height="100" rx="10" fill="none" stroke="#3B2F25" stroke-width="2" stroke-dasharray="1.5 5"/></svg>
+      </div><div class="cap"><span class="id">P14</span><span class="dsc">selo "P"</span></div></div>
+
+      <!-- P15 thin sediment lines / center P -->
+      <div class="opt" data-id="P15"><div class="pickdot"></div><div class="stage light">
+        <svg viewBox="0 0 160 160"><defs><clipPath id="c15"><circle cx="80" cy="80" r="54"/></clipPath></defs>
+        <circle cx="80" cy="80" r="62" fill="#B98B5E"/><circle cx="80" cy="80" r="54" fill="#ECE5D6"/>
+        <g clip-path="url(#c15)" stroke="#3B2F25" stroke-width="3"><line x1="26" y1="98" x2="134" y2="98"/><line x1="26" y1="108" x2="134" y2="108" stroke="#6B7150"/><line x1="26" y1="118" x2="134" y2="118"/><line x1="26" y1="128" x2="134" y2="128" stroke="#6B7150"/></g>
+        <text x="80" y="86" font-family="Barlow Condensed" font-weight="900" font-size="34" fill="#3B2F25" text-anchor="middle" letter-spacing="2">PATCHO</text>
+        <circle cx="80" cy="80" r="54" fill="none" stroke="#3B2F25" stroke-width="2"/></svg>
+      </div><div class="cap"><span class="id">P15</span><span class="dsc">sedimento fino</span></div></div>
+
+      <!-- P16 octagon -->
+      <div class="opt" data-id="P16"><div class="pickdot"></div><div class="stage light">
+        <svg viewBox="0 0 160 160"><defs><clipPath id="c16"><polygon points="56,30 104,30 130,56 130,104 104,130 56,130 30,104 30,56"/></clipPath></defs>
+        <polygon points="54,24 106,24 136,54 136,106 106,136 54,136 24,106 24,54" fill="#3B2F25"/>
+        <polygon points="56,30 104,30 130,56 130,104 104,130 56,130 30,104 30,56" fill="#ECE5D6"/>
+        <g clip-path="url(#c16)"><rect x="24" y="86" width="112" height="14" fill="#D9A05B"/><rect x="24" y="100" width="112" height="14" fill="#6B7150"/><rect x="24" y="114" width="112" height="22" fill="#3B2F25"/></g>
+        <polygon points="56,30 104,30 130,56 130,104 104,130 56,130 30,104 30,56" fill="none" stroke="#B98B5E" stroke-width="2.5"/>
+        <text x="80" y="68" font-family="Barlow Condensed" font-weight="800" font-size="19" fill="#3B2F25" text-anchor="middle" letter-spacing="2">PATCHO</text></svg>
+      </div><div class="cap"><span class="id">P16</span><span class="dsc">octógono</span></div></div>
+
+      <!-- P17 horizon wordmark in sky half -->
+      <div class="opt" data-id="P17"><div class="pickdot"></div><div class="stage light">
+        <svg viewBox="0 0 160 160"><defs><clipPath id="c17"><circle cx="80" cy="80" r="54"/></clipPath></defs>
+        <circle cx="80" cy="80" r="64" fill="#B98B5E"/>
+        <g clip-path="url(#c17)"><rect x="24" y="24" width="112" height="112" fill="#ECE5D6"/><rect x="24" y="92" width="112" height="14" fill="#D9A05B"/><rect x="24" y="106" width="112" height="14" fill="#6B7150"/><rect x="24" y="120" width="112" height="16" fill="#3B2F25"/></g>
+        <text x="80" y="74" font-family="Anton" font-size="26" fill="#3B2F25" text-anchor="middle" letter-spacing="1">PATCHO</text>
+        <text x="80" y="88" font-family="Barlow Condensed" font-weight="600" font-size="8" fill="#7A6A52" text-anchor="middle" letter-spacing="3">BORN IN THE YARD</text>
+        <circle cx="80" cy="80" r="54" fill="none" stroke="#3B2F25" stroke-width="2.5"/></svg>
+      </div><div class="cap"><span class="id">P17</span><span class="dsc">horizonte · nome</span></div></div>
+
+      <!-- P18 trail-marker arch top -->
+      <div class="opt" data-id="P18"><div class="pickdot"></div><div class="stage light">
+        <svg viewBox="0 0 160 160"><defs><clipPath id="c18"><path d="M44 70 Q44 32 80 32 Q116 32 116 70 L116 128 L44 128 Z"/></clipPath></defs>
+        <path d="M38 70 Q38 26 80 26 Q122 26 122 70 L122 134 L38 134 Z" fill="#3B2F25"/>
+        <path d="M44 70 Q44 32 80 32 Q116 32 116 70 L116 128 L44 128 Z" fill="#ECE5D6"/>
+        <g clip-path="url(#c18)"><rect x="44" y="100" width="72" height="12" fill="#D9A05B"/><rect x="44" y="112" width="72" height="16" fill="#3B2F25"/></g>
+        <path d="M44 70 Q44 32 80 32 Q116 32 116 70 L116 128 L44 128 Z" fill="none" stroke="#B98B5E" stroke-width="2.5"/>
+        <text x="80" y="66" font-family="Bebas Neue" font-size="18" fill="#3B2F25" text-anchor="middle" letter-spacing="2">PATCHO</text></svg>
+      </div><div class="cap"><span class="id">P18</span><span class="dsc">placa de trilha</span></div></div>
+
+      <!-- P19 berm triangle over strata -->
+      <div class="opt" data-id="P19"><div class="pickdot"></div><div class="stage light">
+        <svg viewBox="0 0 160 160"><defs><clipPath id="c19"><circle cx="80" cy="80" r="54"/></clipPath><path id="t19" d="M36 80 A44 44 0 0 1 124 80"/></defs>
+        <circle cx="80" cy="80" r="64" fill="#3B2F25"/><circle cx="80" cy="80" r="54" fill="#ECE5D6"/>
+        <g clip-path="url(#c19)"><polygon points="80,52 120,108 40,108" fill="#6B7150"/><polygon points="80,72 104,108 56,108" fill="#3B2F25"/><rect x="26" y="108" width="108" height="30" fill="#3B2F25"/><rect x="26" y="104" width="108" height="6" fill="#D9A05B"/></g>
+        <circle cx="80" cy="80" r="54" fill="none" stroke="#B98B5E" stroke-width="2.5"/>
+        <text font-family="Bebas Neue" font-size="19" fill="#3B2F25" letter-spacing="3"><textPath href="#t19" startOffset="50%" text-anchor="middle">PATCHO</textPath></text></svg>
+      </div><div class="cap"><span class="id">P19</span><span class="dsc">montanha/berma</span></div></div>
+
+      <!-- P20 super clean single bar -->
+      <div class="opt" data-id="P20"><div class="pickdot"></div><div class="stage light">
+        <svg viewBox="0 0 160 160">
+        <circle cx="80" cy="80" r="62" fill="#3B2F25"/><circle cx="80" cy="80" r="56" fill="none" stroke="#B98B5E" stroke-width="2"/>
+        <rect x="30" y="70" width="100" height="22" fill="#ECE5D6"/>
+        <text x="80" y="86" font-family="Barlow Condensed" font-weight="900" font-size="20" fill="#3B2F25" text-anchor="middle" letter-spacing="2">PATCHO</text>
+        <text x="80" y="112" font-family="Barlow Condensed" font-weight="600" font-size="9" fill="#B98B5E" text-anchor="middle" letter-spacing="4">LOAM PREMIUM</text></svg>
+      </div><div class="cap"><span class="id">P20</span><span class="dsc">clean · 1 barra</span></div></div>
+
+    </div>
+  </div>
+</section>
+
+<!-- LIP ICON -->
+<section id="lip">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">B</span><h2>Ícone da Lip — refeito</h2></div>
+    <p class="sec-intro">Refeito do zero com base na <b>geometria real de um lip de pulo</b>: a curva em "J" que começa colada no chão, vai fechando e termina <b>quase vertical</b> no topo (o "chute" da lip) — proporção altura:base ~1:1,7, massa inclinada pra frente. Era exatamente isso que faltava antes (topo raso = parecia rampa de skate ou morro). Aqui vão 9 versões corretas: kicker, tabletop, double, com arco do rider, com nome, em negativo e linear.</p>
+    <div class="toggle-row">
+      <span class="tg on" data-bg="light" data-target="lipGrid">Fundo claro</span>
+      <span class="tg" data-bg="dark" data-target="lipGrid">Fundo terra</span>
+      <span class="tg" data-bg="olive" data-target="lipGrid">Fundo oliva</span>
+    </div>
+    <div class="grid lip" id="lipGrid">
+
+      <!-- L01 single kicker (hero) -->
+      <div class="opt" data-id="L01"><div class="pickdot"></div><div class="stage light">
+        <svg viewBox="0 0 100 100"><path d="M18 85 C42 85 56 80 66 64 C73 52 78 44 80 33 L83 40 L83 85 Z" fill="#3B2F25"/><line x1="10" y1="85" x2="92" y2="85" stroke="#B98B5E" stroke-width="2.5" stroke-linecap="round"/></svg>
+      </div><div class="cap"><span class="id">L01</span><span class="dsc">★ kicker (J-curve)</span></div></div>
+
+      <!-- L02 kicker + rider arc -->
+      <div class="opt" data-id="L02"><div class="pickdot"></div><div class="stage light">
+        <svg viewBox="0 0 100 100"><path d="M18 85 C42 85 56 82 64 68 C70 58 73 50 70 40 L72 46 L72 85 Z" fill="#3B2F25"/><path d="M70 40 Q86 14 100 52" fill="none" stroke="#B98B5E" stroke-width="2.6" stroke-linecap="round"/><circle cx="85" cy="27" r="3.2" fill="#B98B5E"/><line x1="8" y1="85" x2="96" y2="85" stroke="#6B7150" stroke-width="2.2"/></svg>
+      </div><div class="cap"><span class="id">L02</span><span class="dsc">★ kicker + arco</span></div></div>
+
+      <!-- L03 tabletop -->
+      <div class="opt" data-id="L03"><div class="pickdot"></div><div class="stage light">
+        <svg viewBox="0 0 100 100"><path d="M12 85 C30 85 34 46 40 38 L64 38 C70 46 74 85 88 85 Z" fill="#3B2F25"/><line x1="8" y1="85" x2="92" y2="85" stroke="#B98B5E" stroke-width="2.5" stroke-linecap="round"/></svg>
+      </div><div class="cap"><span class="id">L03</span><span class="dsc">tabletop</span></div></div>
+
+      <!-- L04 double + arc -->
+      <div class="opt" data-id="L04"><div class="pickdot"></div><div class="stage light">
+        <svg viewBox="0 0 100 100"><path d="M8 85 C26 85 30 52 38 40 L40 46 L40 85 Z" fill="#3B2F25"/><path d="M60 85 L60 52 C61 47 62 45 64 44 C72 52 80 85 92 85 Z" fill="#3B2F25"/><path d="M40 40 Q51 16 64 44" fill="none" stroke="#B98B5E" stroke-width="2.6" stroke-dasharray="3 4" stroke-linecap="round"/><circle cx="52" cy="25" r="3" fill="#B98B5E"/><line x1="6" y1="85" x2="94" y2="85" stroke="#6B7150" stroke-width="2.2"/></svg>
+      </div><div class="cap"><span class="id">L04</span><span class="dsc">double + gap</span></div></div>
+
+      <!-- L05 kicker + wordmark lockup -->
+      <div class="opt" data-id="L05"><div class="pickdot"></div><div class="stage light">
+        <svg viewBox="0 0 200 140"><path d="M50 86 C76 86 90 81 100 65 C107 53 112 45 114 34 L117 41 L117 86 Z" fill="#3B2F25"/><line x1="40" y1="86" x2="160" y2="86" stroke="#B98B5E" stroke-width="3" stroke-linecap="round"/><text x="100" y="122" font-family="Barlow Condensed" font-weight="800" font-size="32" fill="#3B2F25" text-anchor="middle" letter-spacing="4">PATCHO</text></svg>
+      </div><div class="cap"><span class="id">L05</span><span class="dsc">kicker + nome</span></div></div>
+
+      <!-- L06 negative kicker in circle -->
+      <div class="opt" data-id="L06"><div class="pickdot"></div><div class="stage light">
+        <svg viewBox="0 0 120 120"><circle cx="60" cy="56" r="48" fill="#3B2F25"/><path d="M34 80 C50 80 60 76 67 63 C72 53 75 47 76 38 L79 43 L79 80 Z" fill="#ECE5D6"/><circle cx="60" cy="56" r="48" fill="none" stroke="#B98B5E" stroke-width="2.5"/></svg>
+      </div><div class="cap"><span class="id">L06</span><span class="dsc">negativo / selo</span></div></div>
+
+      <!-- L07 kicker + dirt spray -->
+      <div class="opt" data-id="L07"><div class="pickdot"></div><div class="stage light">
+        <svg viewBox="0 0 120 100"><path d="M22 84 C46 84 58 79 67 63 C73 52 77 45 79 34 L82 40 L82 84 Z" fill="#3B2F25"/><g fill="#B98B5E"><circle cx="92" cy="30" r="3.4"/><circle cx="100" cy="38" r="2.4"/><circle cx="88" cy="20" r="2.4"/><circle cx="99" cy="23" r="1.8"/></g><line x1="14" y1="84" x2="106" y2="84" stroke="#6B7150" stroke-width="2.4"/></svg>
+      </div><div class="cap"><span class="id">L07</span><span class="dsc">lip + poeira</span></div></div>
+
+      <!-- L08 linear / line icon -->
+      <div class="opt" data-id="L08"><div class="pickdot"></div><div class="stage light">
+        <svg viewBox="0 0 120 100"><path d="M16 78 C40 78 54 73 64 57 C71 46 75 38 77 27" fill="none" stroke="#3B2F25" stroke-width="8" stroke-linecap="round"/><line x1="16" y1="80" x2="100" y2="80" stroke="#3B2F25" stroke-width="8" stroke-linecap="round"/></svg>
+      </div><div class="cap"><span class="id">L08</span><span class="dsc">linear (bordado)</span></div></div>
+
+      <!-- L09 tabletop + rider arc -->
+      <div class="opt" data-id="L09"><div class="pickdot"></div><div class="stage light">
+        <svg viewBox="0 0 120 100"><path d="M14 84 C32 84 35 47 41 39 L63 39 C69 47 72 84 86 84 Z" fill="#3B2F25"/><path d="M41 39 Q60 14 86 40" fill="none" stroke="#B98B5E" stroke-width="2.6" stroke-dasharray="3 4" stroke-linecap="round"/><circle cx="62" cy="22" r="3" fill="#B98B5E"/><line x1="10" y1="84" x2="100" y2="84" stroke="#6B7150" stroke-width="2.2"/></svg>
+      </div><div class="cap"><span class="id">L09</span><span class="dsc">tabletop + arco</span></div></div>
+
+    </div>
+  </div>
+</section>
+
+<div class="picked-bar">
+  <div class="wrap">
+    <span class="lbl">Selecionados:</span>
+    <span class="list" id="pickList">— clica nas opções acima —</span>
+    <button id="copyBtn">Copiar lista</button>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>Studio v1 · direção <b>Loam Premium</b> · patches com camadas <b>retas</b> + ícone da Lip refeito. Conceitos exploratórios — não arte-final. Me fala os números (ex: <code style="font-family:'Space Mono';color:var(--argila)">P07, P12, L03</code>) e eu refino os finalistas em alta fidelidade.</p>
+  </div>
+</footer>
+
+<script>
+  // background toggles
+  document.querySelectorAll('.tg').forEach(t=>{
+    t.addEventListener('click',()=>{
+      const target=document.getElementById(t.dataset.target);
+      target.parentElement.querySelectorAll('.tg').forEach(x=>x.classList.remove('on'));
+      t.classList.add('on');
+      target.querySelectorAll('.stage').forEach(s=>{s.classList.remove('light','dark','olive');s.classList.add(t.dataset.bg);});
+    });
+  });
+  // selection
+  const picks=new Set();
+  function render(){
+    const arr=[...picks];
+    document.getElementById('pickList').textContent = arr.length? arr.join(', ') : '— clica nas opções acima —';
+  }
+  document.querySelectorAll('.opt').forEach(o=>{
+    o.addEventListener('click',()=>{
+      const id=o.dataset.id;
+      if(picks.has(id)){picks.delete(id);o.classList.remove('pick');}
+      else{picks.add(id);o.classList.add('pick');}
+      render();
+    });
+  });
+  document.getElementById('copyBtn').addEventListener('click',()=>{
+    const txt=[...picks].join(', ');
+    navigator.clipboard&&navigator.clipboard.writeText(txt);
+    const b=document.getElementById('copyBtn');b.textContent='Copiado!';setTimeout(()=>b.textContent='Copiar lista',1400);
+  });
+</script>
+</body>
+</html>

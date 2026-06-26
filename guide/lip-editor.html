@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PATCHO — Editor do Lip</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;600;800&family=Barlow+Condensed:wght@500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#1B1712;--bg2:#221C16;--bone:#ECE5D6;--bone-dim:#b3a994;--line:#3a3026;--terra:#3B2F25;--argila:#B98B5E;--oliva:#6B7150;--osso:#ECE5D6;--carvao:#171109;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--bone);font-family:'Archivo',system-ui,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+  header{padding:36px 0 18px;border-bottom:1px solid var(--line)}
+  .eyebrow{font-family:'Barlow Condensed';text-transform:uppercase;letter-spacing:.26em;font-size:12px;color:var(--argila);font-weight:700;margin-bottom:10px}
+  h1{font-family:'Anton';font-size:clamp(30px,5vw,50px);text-transform:uppercase;line-height:.9}
+  h1 b{color:var(--argila)}
+  .lede{max-width:680px;margin-top:12px;color:var(--bone-dim);font-size:15px}
+  .layout{display:grid;grid-template-columns:1fr 320px;gap:22px;padding:26px 0 70px}
+  @media(max-width:880px){.layout{grid-template-columns:1fr}}
+  /* editor stage */
+  .stage{background:var(--osso);border-radius:16px;overflow:hidden;position:relative}
+  .stage.dark{background:var(--terra)}
+  #ed{width:100%;height:auto;display:block;touch-action:none}
+  .handle{fill:var(--argila);stroke:#fff;stroke-width:2;cursor:grab;filter:drop-shadow(0 1px 2px rgba(0,0,0,.4))}
+  .handle:active{cursor:grabbing}
+  .handle.ground{fill:#6B7150}
+  .hlabel{font-family:'Space Mono';font-size:11px;font-weight:700;fill:#8a6440;pointer-events:none}
+  .guide{stroke:#B98B5E;stroke-width:1;stroke-dasharray:3 4;opacity:.5}
+  /* panel */
+  .panel{display:flex;flex-direction:column;gap:16px}
+  .box{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:16px}
+  .box h3{font-family:'Bebas Neue';font-size:18px;letter-spacing:.04em;color:var(--bone);margin-bottom:10px}
+  .row{display:flex;align-items:center;gap:10px;margin:8px 0}
+  .row label{font-family:'Barlow Condensed';text-transform:uppercase;letter-spacing:.06em;font-size:12px;color:var(--bone-dim);font-weight:600;min-width:78px}
+  input[type=range]{flex:1;accent-color:var(--argila)}
+  .val{font-family:'Space Mono';font-size:12px;color:var(--argila);min-width:30px;text-align:right}
+  .btns{display:flex;flex-wrap:wrap;gap:8px}
+  button{font-family:'Barlow Condensed';font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:12.5px;background:var(--bg);color:var(--bone);border:1px solid var(--line);border-radius:8px;padding:8px 12px;cursor:pointer;transition:.15s}
+  button:hover{border-color:var(--argila);color:var(--argila)}
+  button.pri{background:var(--argila);color:var(--carvao);border-color:var(--argila)}
+  button.pri:hover{color:var(--carvao);filter:brightness(1.08)}
+  textarea{width:100%;height:74px;background:var(--carvao);color:var(--bone);border:1px solid var(--line);border-radius:8px;padding:8px;font-family:'Space Mono';font-size:11px;resize:vertical}
+  .hint{font-size:12.5px;color:var(--bone-dim);margin-top:6px}
+  .toggles{display:flex;flex-wrap:wrap;gap:8px}
+  .tg{font-family:'Barlow Condensed';font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:12px;color:var(--bone-dim);background:var(--bg);border:1px solid var(--line);border-radius:30px;padding:6px 12px;cursor:pointer;user-select:none}
+  .tg.on{background:var(--argila);color:var(--carvao);border-color:var(--argila)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Editor interativo · arrasta os pontos</div>
+    <h1>Editor do <b>Lip</b></h1>
+    <p class="lede">Arrasta as bolinhas pra moldar o pulo do jeito que tu quer — o logo atualiza na hora. <b>Pé</b> e <b>base</b> andam só na horizontal (colados no chão). <b>Joelho</b>, <b>topo da lip</b> e <b>fim do topo</b> andam livres. Quando ficar certo, clica em <b>Copiar path</b> e me manda, ou <b>Baixar SVG</b>.</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="layout">
+    <!-- EDITOR -->
+    <div class="stage" id="stageEl">
+      <svg id="ed" viewBox="0 0 440 300" role="img" aria-label="Editor do lip">
+        <!-- ground -->
+        <line id="ground" x1="50" y1="210" x2="390" y2="210" stroke="#B98B5E" stroke-width="3" stroke-linecap="round"/>
+        <!-- kicker shape -->
+        <path id="shape" fill="#3B2F25"/>
+        <!-- guide polyline -->
+        <polyline id="guide" class="guide" fill="none"/>
+        <!-- wordmark -->
+        <g id="wordmark">
+          <text x="220" y="262" font-family="Barlow Condensed" font-weight="800" font-size="56" fill="#3B2F25" text-anchor="middle" letter-spacing="7">PATCHO</text>
+          <text x="220" y="282" font-family="Barlow Condensed" font-weight="600" font-size="11" fill="#6B7150" text-anchor="middle" letter-spacing="6">BACKYARD DIRT JUMP CO.</text>
+        </g>
+        <!-- handles injected -->
+        <g id="handles"></g>
+      </svg>
+    </div>
+
+    <!-- PANEL -->
+    <div class="panel">
+      <div class="box">
+        <h3>Ajuste fino</h3>
+        <div class="row"><label>Curvatura</label><input type="range" id="tension" min="0" max="160" value="100"><span class="val" id="tensionV">1.0</span></div>
+        <div class="hint">0 = retões/angular · alto = bem curvo</div>
+      </div>
+
+      <div class="box">
+        <h3>Presets</h3>
+        <div class="btns">
+          <button class="pri" data-preset="A5">Reset A5</button>
+          <button data-preset="sharp">Ponta steep</button>
+          <button data-preset="kick">Com chute</button>
+          <button data-preset="round">Arredondado</button>
+          <button data-preset="mellow">Suave/baixo</button>
+        </div>
+      </div>
+
+      <div class="box">
+        <h3>Visual</h3>
+        <div class="toggles">
+          <span class="tg on" id="tgHandles">Mostrar pontos</span>
+          <span class="tg on" id="tgWord">Mostrar nome</span>
+          <span class="tg" id="tgBg">Fundo terra</span>
+        </div>
+      </div>
+
+      <div class="box">
+        <h3>Resultado</h3>
+        <textarea id="out" readonly></textarea>
+        <div class="btns" style="margin-top:10px">
+          <button class="pri" id="copyBtn">Copiar path</button>
+          <button id="dlBtn">Baixar SVG</button>
+        </div>
+        <div class="hint">Cola aqui no chat que eu travo a forma e levo pra alta fidelidade.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const GROUND=210, VB={w:440,h:300};
+  // editable points. A & E locked to ground (y fixed). order of front curve: A(foot)->M(joelho)->C(lip topo). then D(fim do topo), E(base tras)
+  const PRESETS={
+    A5:   {A:{x:96,y:GROUND}, M:{x:188,y:150}, C:{x:243,y:120}, D:{x:300,y:123}, E:{x:306,y:GROUND}},
+    sharp:{A:{x:96,y:GROUND}, M:{x:196,y:150}, C:{x:256,y:96},  D:{x:262,y:98},  E:{x:270,y:GROUND}},
+    kick: {A:{x:96,y:GROUND}, M:{x:190,y:152}, C:{x:250,y:104}, D:{x:240,y:84},  E:{x:262,y:GROUND}},
+    round:{A:{x:92,y:GROUND}, M:{x:180,y:150}, C:{x:236,y:108}, D:{x:286,y:108}, E:{x:300,y:GROUND}},
+    mellow:{A:{x:88,y:GROUND},M:{x:196,y:168}, C:{x:262,y:140}, D:{x:312,y:142}, E:{x:318,y:GROUND}}
+  };
+  let P=structuredClone(PRESETS.A5);
+  let tension=1.0;
+  const order=['A','M','C','D','E'];
+  const labels={A:'pé',M:'joelho',C:'topo',D:'fim topo',E:'base'};
+  const groundLocked={A:true,E:true};
+
+  const ed=document.getElementById('ed');
+  const shape=document.getElementById('shape');
+  const guide=document.getElementById('guide');
+  const handlesG=document.getElementById('handles');
+  const out=document.getElementById('out');
+
+  // Catmull-Rom through the front points [A,M,C] -> smooth path 'd'
+  function crPath(pts,t){
+    if(pts.length<2) return '';
+    let d=`M ${r(pts[0].x)} ${r(pts[0].y)}`;
+    const p=[pts[0],...pts,pts[pts.length-1]];
+    for(let i=1;i<p.length-2;i++){
+      const p0=p[i-1],p1=p[i],p2=p[i+1],p3=p[i+2];
+      const c1x=p1.x+(p2.x-p0.x)/6*t, c1y=p1.y+(p2.y-p0.y)/6*t;
+      const c2x=p2.x-(p3.x-p1.x)/6*t, c2y=p2.y-(p3.y-p1.y)/6*t;
+      d+=` C ${r(c1x)} ${r(c1y)} ${r(c2x)} ${r(c2y)} ${r(p2.x)} ${r(p2.y)}`;
+    }
+    return d;
+  }
+  const r=v=>Math.round(v*10)/10;
+
+  function buildPath(){
+    const front=crPath([P.A,P.M,P.C],tension);
+    return `${front} L ${r(P.D.x)} ${r(P.D.y)} L ${r(P.E.x)} ${r(P.E.y)} Z`;
+  }
+
+  function render(){
+    const d=buildPath();
+    shape.setAttribute('d',d);
+    guide.setAttribute('points',order.map(k=>`${P[k].x},${P[k].y}`).join(' '));
+    // handles
+    handlesG.innerHTML='';
+    order.forEach(k=>{
+      const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+      c.setAttribute('cx',P[k].x);c.setAttribute('cy',P[k].y);c.setAttribute('r',9);
+      c.setAttribute('class','handle'+(groundLocked[k]?' ground':''));
+      c.dataset.id=k;
+      handlesG.appendChild(c);
+      const t=document.createElementNS('http://www.w3.org/2000/svg','text');
+      t.setAttribute('x',P[k].x);t.setAttribute('y',P[k].y-14);t.setAttribute('text-anchor','middle');
+      t.setAttribute('class','hlabel');t.textContent=labels[k];
+      handlesG.appendChild(t);
+    });
+    out.value=`<path d="${d}" fill="#3B2F25"/>\n<!-- viewBox 0 0 440 300 · lip do ícone -->`;
+    attachDrag();
+  }
+
+  // dragging
+  function toSvg(evt){
+    const pt=ed.createSVGPoint();
+    const src=evt.touches?evt.touches[0]:evt;
+    pt.x=src.clientX;pt.y=src.clientY;
+    return pt.matrixTransform(ed.getScreenCTM().inverse());
+  }
+  let active=null;
+  function attachDrag(){
+    handlesG.querySelectorAll('.handle').forEach(h=>{
+      h.addEventListener('pointerdown',e=>{active=h.dataset.id;h.setPointerCapture(e.pointerId);e.preventDefault();});
+    });
+  }
+  ed.addEventListener('pointermove',e=>{
+    if(!active)return;
+    const s=toSvg(e);
+    let x=Math.max(8,Math.min(VB.w-8,s.x));
+    let y=Math.max(8,Math.min(GROUND,s.y));
+    if(groundLocked[active]) y=GROUND;
+    P[active]={x:r(x),y:r(y)};
+    render();
+  });
+  window.addEventListener('pointerup',()=>active=null);
+
+  // controls
+  const tEl=document.getElementById('tension'),tV=document.getElementById('tensionV');
+  tEl.addEventListener('input',()=>{tension=tEl.value/100;tV.textContent=tension.toFixed(1);render();});
+  document.querySelectorAll('[data-preset]').forEach(b=>b.addEventListener('click',()=>{
+    P=structuredClone(PRESETS[b.dataset.preset]);render();
+  }));
+  // toggles
+  document.getElementById('tgHandles').addEventListener('click',function(){this.classList.toggle('on');handlesG.style.display=this.classList.contains('on')?'':'none';});
+  document.getElementById('tgWord').addEventListener('click',function(){this.classList.toggle('on');document.getElementById('wordmark').style.display=this.classList.contains('on')?'':'none';});
+  document.getElementById('tgBg').addEventListener('click',function(){
+    this.classList.toggle('on');
+    const dark=this.classList.contains('on');
+    document.getElementById('stageEl').classList.toggle('dark',dark);
+    shape.setAttribute('fill',dark?'#ECE5D6':'#3B2F25');
+    document.querySelectorAll('#wordmark text')[0].setAttribute('fill',dark?'#ECE5D6':'#3B2F25');
+    document.getElementById('ground').setAttribute('stroke',dark?'#ECE5D6':'#B98B5E');
+  });
+  // copy + download
+  document.getElementById('copyBtn').addEventListener('click',function(){
+    navigator.clipboard&&navigator.clipboard.writeText(out.value);
+    this.textContent='Copiado!';setTimeout(()=>this.textContent='Copiar path',1300);
+  });
+  document.getElementById('dlBtn').addEventListener('click',()=>{
+    const d=buildPath();
+    const svg=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 300">
+  <line x1="50" y1="210" x2="390" y2="210" stroke="#B98B5E" stroke-width="3" stroke-linecap="round"/>
+  <path d="${d}" fill="#3B2F25"/>
+  <text x="220" y="262" font-family="Arial, sans-serif" font-weight="800" font-size="56" fill="#3B2F25" text-anchor="middle" letter-spacing="7">PATCHO</text>
+</svg>`;
+    const blob=new Blob([svg],{type:'image/svg+xml'});
+    const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='patcho-lip.svg';a.click();
+  });
+
+  render();
+</script>
+</body>
+</html>

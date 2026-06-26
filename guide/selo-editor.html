@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PATCHO — Editor do Selo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;600;800&family=Barlow+Condensed:wght@500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#1B1712;--bg2:#221C16;--bone:#ECE5D6;--bone-dim:#b3a994;--line:#3a3026;--terra:#3B2F25;--argila:#B98B5E;--oliva:#6B7150;--osso:#ECE5D6;--carvao:#171109;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--bone);font-family:'Archivo',system-ui,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+  header{padding:32px 0 16px;border-bottom:1px solid var(--line)}
+  .eyebrow{font-family:'Barlow Condensed';text-transform:uppercase;letter-spacing:.26em;font-size:12px;color:var(--argila);font-weight:700;margin-bottom:10px}
+  h1{font-family:'Anton';font-size:clamp(28px,5vw,46px);text-transform:uppercase;line-height:.9}
+  h1 b{color:var(--argila)}
+  .lede{max-width:680px;margin-top:12px;color:var(--bone-dim);font-size:15px}
+  .layout{display:grid;grid-template-columns:1fr 340px;gap:22px;padding:24px 0 70px}
+  @media(max-width:900px){.layout{grid-template-columns:1fr}}
+  .stage{background:var(--osso);border-radius:16px;display:flex;align-items:center;justify-content:center;padding:24px;position:sticky;top:16px}
+  .stage.dark{background:var(--carvao)}
+  #sv{width:100%;max-width:460px;height:auto;touch-action:none}
+  .panel{display:flex;flex-direction:column;gap:14px}
+  .box{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .box h3{font-family:'Bebas Neue';font-size:18px;letter-spacing:.04em;color:var(--argila);margin-bottom:6px}
+  .row{display:flex;align-items:center;gap:10px;margin:7px 0}
+  .row label{font-family:'Barlow Condensed';text-transform:uppercase;letter-spacing:.05em;font-size:11.5px;color:var(--bone-dim);font-weight:600;min-width:96px}
+  input[type=range]{flex:1;accent-color:var(--argila)}
+  .val{font-family:'Space Mono';font-size:12px;color:var(--bone);min-width:34px;text-align:right}
+  .btns{display:flex;flex-wrap:wrap;gap:8px}
+  button{font-family:'Barlow Condensed';font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:12.5px;background:var(--bg);color:var(--bone);border:1px solid var(--line);border-radius:8px;padding:8px 12px;cursor:pointer;transition:.15s}
+  button:hover{border-color:var(--argila);color:var(--argila)}
+  button.pri{background:var(--argila);color:var(--carvao);border-color:var(--argila)}
+  .tg{font-family:'Barlow Condensed';font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:11.5px;color:var(--bone-dim);background:var(--bg);border:1px solid var(--line);border-radius:30px;padding:6px 12px;cursor:pointer;user-select:none}
+  .tg.on{background:var(--argila);color:var(--carvao);border-color:var(--argila)}
+  textarea{width:100%;height:60px;background:var(--carvao);color:var(--bone);border:1px solid var(--line);border-radius:8px;padding:8px;font-family:'Space Mono';font-size:10px;resize:vertical}
+  .params{font-family:'Space Mono';font-size:11px;color:var(--argila);word-break:break-all;margin-top:6px}
+  .hint{font-size:12px;color:var(--bone-dim);margin-top:6px}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Editor interativo do selo / patch</div>
+    <h1>Alinha o <b>Selo</b></h1>
+    <p class="lede">Mexe nos sliders e o selo muda na hora. A <b>cruz vermelha</b> mostra o centro real. Pra equilibrar: deixa a margem do texto de cima até a borda igual à do texto de baixo. Quando ficar certo, clica <b>Copiar SVG</b> (ou me passa os números embaixo).</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="layout">
+    <div class="stage" id="stageEl"><div id="svWrap"></div></div>
+
+    <div class="panel">
+      <div class="box">
+        <h3>Texto de cima — PATCHO</h3>
+        <div class="row"><label>Raio (dist.)</label><input type="range" id="topR" min="30" max="58" step="0.5" value="42"><span class="val" id="topRv"></span></div>
+        <div class="row"><label>Tamanho</label><input type="range" id="topF" min="11" max="24" step="0.5" value="16"><span class="val" id="topFv"></span></div>
+        <div class="row"><label>Espaçamento</label><input type="range" id="topL" min="0" max="8" step="0.5" value="3"><span class="val" id="topLv"></span></div>
+      </div>
+      <div class="box">
+        <h3>Texto de baixo — LOAM PREMIUM</h3>
+        <div class="row"><label>Raio (dist.)</label><input type="range" id="botR" min="30" max="60" step="0.5" value="53"><span class="val" id="botRv"></span></div>
+        <div class="row"><label>Tamanho</label><input type="range" id="botF" min="6" max="16" step="0.5" value="9"><span class="val" id="botFv"></span></div>
+        <div class="row"><label>Espaçamento</label><input type="range" id="botL" min="0" max="6" step="0.5" value="2"><span class="val" id="botLv"></span></div>
+      </div>
+      <div class="box">
+        <h3>Ícone (a lip)</h3>
+        <div class="row"><label>Posição X</label><input type="range" id="icX" min="40" max="80" step="0.5" value="56"><span class="val" id="icXv"></span></div>
+        <div class="row"><label>Base Y</label><input type="range" id="icY" min="86" max="122" step="0.5" value="103"><span class="val" id="icYv"></span></div>
+        <div class="row"><label>Escala</label><input type="range" id="icS" min="0.40" max="1.00" step="0.01" value="0.66"><span class="val" id="icSv"></span></div>
+        <div class="row"><label>Linha chão</label><input type="range" id="gw" min="0" max="5" step="0.5" value="2.5"><span class="val" id="gwv"></span></div>
+      </div>
+      <div class="box">
+        <h3>Visual</h3>
+        <div class="btns">
+          <span class="tg on" id="tgGuide">Cruz central</span>
+          <span class="tg" id="tgRings">Anéis-guia</span>
+          <span class="tg" id="tgBg">Fundo escuro</span>
+        </div>
+        <div class="btns" style="margin-top:8px"><button id="reset">Reset</button></div>
+      </div>
+      <div class="box">
+        <h3>Exportar</h3>
+        <textarea id="out" readonly></textarea>
+        <div class="btns" style="margin-top:8px">
+          <button class="pri" id="copyBtn">Copiar SVG</button>
+          <button id="dlBtn">Baixar SVG</button>
+        </div>
+        <div class="params" id="paramsLine"></div>
+        <div class="hint">Pode só me mandar essa linha de números que eu travo.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const IP="M 170.2 210 C 181.3 205.3 195.2 204.6 211.8 192.4 C 228.4 180.2 226.8 171.8 232.3 164.3 L 243.8 164.2 L 244.9 210 Z";
+  const IW=74.7;
+  const DEF={topR:42,topF:16,topL:3,botR:53,botF:9,botL:2,icX:56,icY:103,icS:0.66,gw:2.5};
+  const ids=Object.keys(DEF);
+  const state={...DEF};
+  let showGuide=true, showRings=false, dark=false;
+
+  function buildSVG(forExport){
+    const s=state;
+    const topArc=`M ${(90-s.topR).toFixed(1)} 90 A ${s.topR} ${s.topR} 0 0 1 ${(90+s.topR).toFixed(1)} 90`;
+    const botArc=`M ${(90-s.botR).toFixed(1)} 90 A ${s.botR} ${s.botR} 0 0 0 ${(90+s.botR).toFixed(1)} 90`;
+    const gx1=(s.icX-1).toFixed(1), gx2=(s.icX-1+IW*s.icS).toFixed(1);
+    const guide = (!forExport && showGuide) ? `<line x1="90" y1="6" x2="90" y2="174" stroke="red" stroke-width="0.5" opacity="0.7"/><line x1="6" y1="90" x2="174" y2="90" stroke="red" stroke-width="0.5" opacity="0.7"/>` : '';
+    const rings = (!forExport && showRings) ? `<circle cx="90" cy="90" r="${s.topR}" fill="none" stroke="#0bf" stroke-width="0.4" opacity="0.5"/><circle cx="90" cy="90" r="${s.botR}" fill="none" stroke="#0bf" stroke-width="0.4" opacity="0.5"/>` : '';
+    return `<svg id="sv" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" width="${forExport?300:460}" height="${forExport?300:460}">
+  <defs><path id="fpt" d="${topArc}"/><path id="fpb" d="${botArc}"/></defs>
+  <circle cx="90" cy="90" r="74" fill="#B98B5E" stroke="#8a6440" stroke-width="3"/>
+  <circle cx="90" cy="90" r="62" fill="#ECE5D6"/>
+  <circle cx="90" cy="90" r="62" fill="none" stroke="#3B2F25" stroke-width="2" stroke-dasharray="1.5 5"/>
+  <line x1="${gx1}" y1="${s.icY}" x2="${gx2}" y2="${s.icY}" stroke="#6B7150" stroke-width="${s.gw}" stroke-linecap="round"/>
+  <g transform="translate(${s.icX} ${s.icY}) scale(${s.icS}) translate(-170.2 -210)"><path d="${IP}" fill="#3B2F25"/></g>
+  <text font-family="Barlow Condensed" font-weight="800" font-size="${s.topF}" fill="#3B2F25" letter-spacing="${s.topL}"><textPath href="#fpt" startOffset="50%" text-anchor="middle">PATCHO</textPath></text>
+  <text font-family="Barlow Condensed" font-weight="700" font-size="${s.botF}" fill="#6B7150" letter-spacing="${s.botL}"><textPath href="#fpb" startOffset="50%" text-anchor="middle">LOAM PREMIUM</textPath></text>
+  ${rings}${guide}
+</svg>`;
+  }
+
+  function render(){
+    document.getElementById('svWrap').innerHTML=buildSVG(false);
+    const exp=buildSVG(true);
+    document.getElementById('out').value=exp;
+    document.getElementById('paramsLine').textContent=ids.map(k=>`${k}=${state[k]}`).join('  ');
+    ids.forEach(k=>{const v=document.getElementById(k+'v'); if(v) v.textContent=state[k];});
+  }
+
+  ids.forEach(k=>{
+    const el=document.getElementById(k);
+    el.addEventListener('input',()=>{state[k]=parseFloat(el.value);render();});
+  });
+  document.getElementById('tgGuide').addEventListener('click',function(){this.classList.toggle('on');showGuide=this.classList.contains('on');render();});
+  document.getElementById('tgRings').addEventListener('click',function(){this.classList.toggle('on');showRings=this.classList.contains('on');render();});
+  document.getElementById('tgBg').addEventListener('click',function(){this.classList.toggle('on');dark=this.classList.contains('on');document.getElementById('stageEl').classList.toggle('dark',dark);});
+  document.getElementById('reset').addEventListener('click',()=>{Object.assign(state,DEF);ids.forEach(k=>document.getElementById(k).value=DEF[k]);render();});
+  document.getElementById('copyBtn').addEventListener('click',function(){navigator.clipboard&&navigator.clipboard.writeText(document.getElementById('out').value);this.textContent='Copiado!';setTimeout(()=>this.textContent='Copiar SVG',1300);});
+  document.getElementById('dlBtn').addEventListener('click',()=>{
+    const svg='<?xml version="1.0"?>\n<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" width="300" height="300"><style>@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&display=swap");</style>'+buildSVG(true).replace(/^<svg[^>]*>/,'').replace(/<\/svg>$/,'')+'</svg>';
+    const b=new Blob([svg],{type:'image/svg+xml'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='patcho-selo.svg';a.click();
+  });
+  render();
+</script>
+</body>
+</html>

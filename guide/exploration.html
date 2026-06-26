@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PATCHO — Brand Identity Exploration</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:ital,wght@0,400;0,600;0,800;1,400&family=Archivo+Black&family=Bebas+Neue&family=Oswald:wght@300;500;700&family=Teko:wght@400;600&family=Saira+Condensed:wght@500;800&family=Saira+Stencil+One&family=Inter:wght@400;500;700&family=Barlow:wght@400;600&family=Space+Grotesk:wght@400;600&family=Yellowtail&family=Kaushan+Script&family=Permanent+Marker&family=Rubik+Mono+One&family=Bungee&family=Graduate&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --tar:#0E0E0E; --bone:#F4F1EA; --send:#FB6602; --osha:#FF7900; --concrete:#6E6A66;
+    --loam:#3A2A1E; --berm:#D9A762; --clay:#A4471F; --dust:#DAD8C1; --tan:#7A6A52;
+    --mata:#14684A; --teal:#49CEC1; --lime:#B6E021; --resi:#009CA3; --canopy:#1B241C;
+    --ink:#111; --paper:#E8E8E8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--tar);color:var(--bone);font-family:'Inter',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+  /* ---- HERO ---- */
+  header.hero{
+    min-height:78vh;display:flex;flex-direction:column;justify-content:center;
+    background:
+      repeating-linear-gradient(135deg, rgba(255,255,255,.02) 0 2px, transparent 2px 9px),
+      radial-gradient(circle at 70% 15%, rgba(251,102,2,.18), transparent 55%),
+      linear-gradient(180deg,#070707, #161210);
+    border-bottom:6px solid var(--send);
+    position:relative;overflow:hidden;
+  }
+  .hero .wrap{position:relative;z-index:2}
+  .kicker{font-family:'Saira Stencil One';letter-spacing:.18em;color:var(--send);font-size:.95rem;text-transform:uppercase}
+  h1.brand{font-family:'Anton';font-size:clamp(5rem,22vw,16rem);line-height:.82;letter-spacing:-.01em;text-transform:uppercase}
+  h1.brand .o{color:var(--send)}
+  .tagline{font-family:'Yellowtail';font-size:clamp(1.8rem,6vw,3.4rem);color:var(--bone);margin-top:.4rem;transform:rotate(-2deg)}
+  .sub{margin-top:1.4rem;max-width:640px;color:#c9c5bc;font-size:1.05rem}
+  .meta-row{margin-top:2.2rem;display:flex;gap:14px;flex-wrap:wrap}
+  .chip{font-family:'Saira Condensed';font-weight:800;text-transform:uppercase;letter-spacing:.08em;
+    font-size:.8rem;border:1.5px solid #44403c;padding:7px 13px;border-radius:2px;color:#d8d4cb}
+
+  /* ---- SECTION SHELL ---- */
+  section{padding:84px 0;border-bottom:1px solid #211d1a}
+  .sec-num{font-family:'Anton';font-size:1rem;color:var(--send);letter-spacing:.2em}
+  h2{font-family:'Bebas Neue';font-size:clamp(2.6rem,7vw,4.6rem);line-height:.95;letter-spacing:.01em;margin:.2rem 0 .4rem}
+  .lede{max-width:760px;color:#c2beb5;font-size:1.08rem;margin-bottom:2.4rem}
+  h3{font-family:'Oswald';font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:1.35rem;margin:2.6rem 0 1rem;color:var(--bone)}
+  h4{font-family:'Oswald';font-weight:500;text-transform:uppercase;letter-spacing:.05em;font-size:1rem;color:var(--berm);margin:1.6rem 0 .5rem}
+  p{margin-bottom:1rem;color:#cfcbc2}
+  p strong, li strong{color:var(--bone)}
+  ul{margin:0 0 1rem 1.1rem;color:#cfcbc2}
+  li{margin-bottom:.4rem}
+  a{color:var(--teal);text-decoration:none;border-bottom:1px solid rgba(73,206,193,.3)}
+  a:hover{border-color:var(--teal)}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+  @media(max-width:760px){.two-col{grid-template-columns:1fr}}
+
+  /* ---- COLOR PALETTES ---- */
+  .pal{border:1px solid #2a2521;border-radius:8px;overflow:hidden;margin-bottom:26px;background:#141110}
+  .pal-head{display:flex;justify-content:space-between;align-items:baseline;padding:16px 18px;gap:12px;flex-wrap:wrap}
+  .pal-name{font-family:'Anton';font-size:1.5rem;text-transform:uppercase;letter-spacing:.01em}
+  .pal-tag{font-family:'Saira Condensed';font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--concrete);font-size:.82rem}
+  .swatches{display:flex;min-height:118px}
+  .sw{flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding:10px;cursor:default;transition:flex .25s}
+  .sw:hover{flex:1.5}
+  .sw .hex{font-family:'Space Grotesk';font-size:.72rem;font-weight:600;background:rgba(0,0,0,.35);align-self:flex-start;padding:2px 6px;border-radius:3px;backdrop-filter:blur(2px)}
+  .sw .role{font-size:.66rem;text-transform:uppercase;letter-spacing:.08em;margin-top:auto;opacity:.85}
+  .pal-body{padding:4px 18px 18px;font-size:.94rem;color:#b8b4ab}
+  .pal-body em{color:var(--berm);font-style:normal;font-weight:600}
+  .lead-badge{display:inline-block;font-family:'Saira Condensed';font-weight:800;font-size:.7rem;letter-spacing:.1em;
+    text-transform:uppercase;background:var(--send);color:#111;padding:3px 8px;border-radius:2px;margin-left:8px;vertical-align:middle}
+
+  /* ---- TYPE SPECIMENS ---- */
+  .spec{border:1px solid #2a2521;border-radius:8px;padding:22px;margin-bottom:18px;background:#141110}
+  .spec .label{font-family:'Space Grotesk';font-size:.78rem;color:var(--concrete);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+  .spec .lic{font-family:'Space Grotesk';font-size:.68rem;color:var(--mata);background:rgba(20,104,74,.14);
+    display:inline-block;padding:2px 7px;border-radius:3px;border:1px solid rgba(20,104,74,.4);margin-top:10px}
+  .big-anton{font-family:'Anton';font-size:clamp(2.4rem,8vw,4.2rem);text-transform:uppercase;line-height:.9}
+  .big-bebas{font-family:'Bebas Neue';font-size:clamp(2.4rem,8vw,4rem)}
+  .big-archblack{font-family:'Archivo Black';font-size:clamp(1.8rem,6vw,3rem)}
+  .big-teko{font-family:'Teko';font-weight:600;font-size:clamp(2.4rem,8vw,4rem);line-height:.9}
+  .big-saira{font-family:'Saira Condensed';font-weight:800;font-size:clamp(2rem,7vw,3.4rem);text-transform:uppercase}
+  .big-stencil{font-family:'Saira Stencil One';font-size:clamp(1.8rem,6vw,3rem)}
+  .big-rubik{font-family:'Rubik Mono One';font-size:clamp(1.4rem,5vw,2.4rem)}
+  .big-bungee{font-family:'Bungee';font-size:clamp(1.6rem,5vw,2.6rem)}
+  .scr-yellow{font-family:'Yellowtail';font-size:clamp(2.4rem,8vw,4rem)}
+  .scr-kaushan{font-family:'Kaushan Script';font-size:clamp(2rem,7vw,3.2rem)}
+  .scr-marker{font-family:'Permanent Marker';font-size:clamp(1.6rem,5vw,2.4rem)}
+  .body-inter{font-family:'Inter';font-size:1.05rem}
+  .body-barlow{font-family:'Barlow';font-size:1.1rem}
+  .body-space{font-family:'Space Grotesk';font-size:1.02rem}
+
+  .sys-card{border:1px solid #2a2521;border-radius:8px;padding:20px;background:#15110f}
+  .sys-card h4{margin-top:0;color:var(--send)}
+  .sys-card .row{display:flex;justify-content:space-between;border-bottom:1px solid #221e1b;padding:7px 0;font-size:.92rem}
+  .sys-card .row span:first-child{color:var(--concrete);font-family:'Space Grotesk';font-size:.8rem;text-transform:uppercase;letter-spacing:.06em}
+
+  /* ---- LOGO ARCHETYPES ---- */
+  .arch{border:1px solid #2a2521;border-radius:8px;padding:22px;margin-bottom:16px;background:#141110}
+  .arch.hero-arch{border-color:var(--send);background:linear-gradient(180deg,#1a130d,#141110)}
+  .arch-title{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .arch-letter{font-family:'Anton';font-size:1.8rem;color:var(--send)}
+  .arch-name{font-family:'Bebas Neue';font-size:1.7rem;letter-spacing:.02em}
+  .ratings{display:flex;gap:18px;margin-top:12px;flex-wrap:wrap}
+  .rating{font-family:'Space Grotesk';font-size:.74rem;text-transform:uppercase;letter-spacing:.05em;color:var(--concrete)}
+  .rating b{color:var(--teal);font-size:.95rem;margin-left:4px}
+  .pc{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:14px}
+  @media(max-width:600px){.pc{grid-template-columns:1fr}}
+  .pc .pros,.pc .cons{font-size:.9rem}
+  .pc .pros li::marker{content:"+  ";color:var(--lime);font-weight:bold}
+  .pc .cons li::marker{content:"–  ";color:var(--clay);font-weight:bold}
+
+  /* ---- MERCH ---- */
+  .merch-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin:1.4rem 0}
+  .mcard{border:1px solid #2a2521;border-radius:8px;padding:16px;background:#141110}
+  .mcard .tier{font-family:'Saira Condensed';font-weight:800;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;border-radius:2px;display:inline-block;margin-bottom:8px}
+  .tier.core{background:var(--send);color:#111}
+  .tier.p2{background:var(--berm);color:#111}
+  .tier.p3{background:#3a342f;color:#d8d4cb}
+  .mcard h4{margin:0 0 6px;color:var(--bone)}
+  .mcard p{font-size:.86rem;margin:0;color:#aca89f}
+  table.t{width:100%;border-collapse:collapse;margin:1.2rem 0;font-size:.9rem}
+  table.t th{font-family:'Oswald';text-transform:uppercase;letter-spacing:.05em;text-align:left;padding:10px;border-bottom:2px solid var(--send);color:var(--bone);font-weight:500}
+  table.t td{padding:10px;border-bottom:1px solid #221e1b;color:#bdb9b0;vertical-align:top}
+  table.t tr:hover td{background:#161311}
+
+  /* ---- MOTIF ---- */
+  .motif-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:1.4rem}
+  .motif{border:1px solid #2a2521;border-radius:8px;padding:18px;background:#141110;position:relative;overflow:hidden}
+  .motif .mi{font-family:'Anton';font-size:.85rem;color:var(--send);letter-spacing:.1em}
+  .motif h4{margin:.3rem 0 .6rem;color:var(--bone);font-size:1.1rem}
+  .motif p{font-size:.86rem;color:#aca89f;margin-bottom:.5rem}
+  .motif .ref{font-size:.76rem;color:var(--mata);font-family:'Space Grotesk'}
+  .hero-dev{border:1px solid var(--send);border-radius:8px;padding:20px;margin-bottom:14px;background:linear-gradient(180deg,#1a130d,#141110)}
+  .hero-dev .num{font-family:'Anton';font-size:2rem;color:var(--send);float:left;margin-right:14px;line-height:.8}
+  .hero-dev h4{font-family:'Bebas Neue';font-size:1.5rem;color:var(--bone);letter-spacing:.02em;margin:0 0 4px}
+  .hero-dev p{font-size:.9rem;overflow:hidden}
+
+  /* ---- SOURCES / FOOTER ---- */
+  .sources{font-size:.8rem;color:#7a766d;columns:2;column-gap:32px}
+  .sources a{font-size:.8rem;color:#9a968d;border:none}
+  .sources a:hover{color:var(--teal)}
+  @media(max-width:600px){.sources{columns:1}}
+  footer{padding:60px 0;text-align:center;color:#6a665d;font-size:.85rem}
+  .nav{position:sticky;top:0;z-index:50;background:rgba(7,7,7,.92);backdrop-filter:blur(8px);border-bottom:1px solid #211d1a}
+  .nav .wrap{display:flex;gap:6px;padding:10px 24px;overflow-x:auto;align-items:center}
+  .nav a{font-family:'Saira Condensed';font-weight:800;text-transform:uppercase;letter-spacing:.06em;font-size:.78rem;
+    color:#b8b4ab;border:none;white-space:nowrap;padding:6px 11px;border-radius:3px}
+  .nav a:hover{background:#1d1916;color:var(--send)}
+  .nav .logo{font-family:'Anton';color:var(--bone);margin-right:14px;font-size:1rem;letter-spacing:.02em}
+  .nav .logo .o{color:var(--send)}
+  .callout{border-left:3px solid var(--send);padding:14px 18px;background:#15110f;border-radius:0 6px 6px 0;margin:1.4rem 0;font-size:.96rem}
+  .callout .lbl{font-family:'Saira Condensed';font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--send);font-size:.78rem;display:block;margin-bottom:4px}
+</style>
+</head>
+<body>
+
+<nav class="nav"><div class="wrap">
+  <span class="logo">PATCH<span class="o">O</span></span>
+  <a href="#color">01 Color</a>
+  <a href="#type">02 Type</a>
+  <a href="#logo">03 Logo</a>
+  <a href="#merch">04 Merch</a>
+  <a href="#motif">05 Motif</a>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <span class="kicker">Brand Identity Exploration · Dirt-Jump Soul Brand</span>
+  <h1 class="brand">PATCH<span class="o">O</span></h1>
+  <div class="tagline">Born in the yard. Built on dirt.</div>
+  <p class="sub">An apparel-forward soul brand from the backyard dirt-jump / freeride world — Brazilian roots, global ambition, foam pit out back. This document explores five pillars of a visual identity, grounded throughout in real brands, real fonts, and real hex values from MTB, BMX, moto, skate, and heritage-outdoor culture.</p>
+  <div class="meta-row">
+    <span class="chip">8 Color Systems</span>
+    <span class="chip">4 Type Moods</span>
+    <span class="chip">5 Logo Archetypes</span>
+    <span class="chip">Merch Playbook</span>
+    <span class="chip">10 Motif Families</span>
+  </div>
+</div></header>
+
+<!-- ============ 1. COLOR ============ -->
+<section id="color"><div class="wrap">
+  <span class="sec-num">01</span>
+  <h2>Color Systems</h2>
+  <p class="lede">Eight named palettes, each mapped to a distinct brand personality, with explicit hex roles for the swatch build. Lineage traced to real brands. None of the referenced brands publish official public hex guides — values are verified cross-checks (Fox <code>#fb6602</code>/<code>#f6a705</code>), documented standards (ANSI/OSHA, Vans PMS), or community-sampled and flagged as such. <strong>Hover a swatch to expand it.</strong></p>
+
+  <!-- P1 -->
+  <div class="pal">
+    <div class="pal-head"><span class="pal-name">Yard Dog<span class="lead-badge">Core</span></span><span class="pal-tag">Raw Punk B&amp;W + Safety Orange</span></div>
+    <div class="swatches">
+      <div class="sw" style="background:#0E0E0E;color:#fff"><span class="hex">#0E0E0E</span><span class="role">Tar Black · primary</span></div>
+      <div class="sw" style="background:#F4F1EA;color:#111"><span class="hex">#F4F1EA</span><span class="role">Bone White · secondary</span></div>
+      <div class="sw" style="background:#FB6602;color:#111"><span class="hex">#FB6602</span><span class="role">Send Orange · accent</span></div>
+      <div class="sw" style="background:#FF7900;color:#111"><span class="hex">#FF7900</span><span class="role">OSHA Orange · accent</span></div>
+      <div class="sw" style="background:#6E6A66;color:#fff"><span class="hex">#6E6A66</span><span class="role">Concrete · neutral</span></div>
+    </div>
+    <div class="pal-body">Thrasher's blunt black/white skate-rag aesthetic crossed with Fox Racing's danger orange and ANSI safety wear. <em>Signal:</em> fearless, working-class, punk — "we dig our own lines." Similar to Thrasher, Independent Trucks, Vans box-logo merch.</div>
+  </div>
+
+  <!-- P2 -->
+  <div class="pal">
+    <div class="pal-head"><span class="pal-name">Loam Premium</span><span class="pal-tag">Earthy Dirt Premium</span></div>
+    <div class="swatches">
+      <div class="sw" style="background:#3A2A1E;color:#fff"><span class="hex">#3A2A1E</span><span class="role">Wet Loam · primary</span></div>
+      <div class="sw" style="background:#D9A762;color:#111"><span class="hex">#D9A762</span><span class="role">Berm Amber · secondary</span></div>
+      <div class="sw" style="background:#A4471F;color:#fff"><span class="hex">#A4471F</span><span class="role">Clay Berm · accent</span></div>
+      <div class="sw" style="background:#7A6A52;color:#fff"><span class="hex">#7A6A52</span><span class="role">Trail Tan · neutral</span></div>
+      <div class="sw" style="background:#DAD8C1;color:#111"><span class="hex">#DAD8C1</span><span class="role">Dust White · neutral</span></div>
+    </div>
+    <div class="pal-body">Carhartt's amber/brown workwear (<code>#D9A762</code> = community "Carhartt Symbol") over Patagonia heritage earth tones. <em>Signal:</em> durable, grown-up, soil-honest — craft over hype. Similar to Carhartt WIP, Patagonia heritage, Fasthouse casuals, Brixton.</div>
+  </div>
+
+  <!-- P3 -->
+  <div class="pal">
+    <div class="pal-head"><span class="pal-name">Foam Jungle<span class="lead-badge">Hero</span></span><span class="pal-tag">Jungle Resi — Tropical / Foam-Pit</span></div>
+    <div class="swatches">
+      <div class="sw" style="background:#14684A;color:#fff"><span class="hex">#14684A</span><span class="role">Mata Verde · primary</span></div>
+      <div class="sw" style="background:#49CEC1;color:#111"><span class="hex">#49CEC1</span><span class="role">Airbag Teal · secondary</span></div>
+      <div class="sw" style="background:#B6E021;color:#111"><span class="hex">#B6E021</span><span class="role">Foam Lime · accent</span></div>
+      <div class="sw" style="background:#009CA3;color:#fff"><span class="hex">#009CA3</span><span class="role">Resi Cyan · accent</span></div>
+      <div class="sw" style="background:#1B241C;color:#fff"><span class="hex">#1B241C</span><span class="role">Canopy Black · neutral</span></div>
+    </div>
+    <div class="pal-body">Patagonia forest green anchors it; airbag teal from the Santa Cruz palette and Yeti's turquoise (PMS 320C → <code>#009CA3</code>); foam lime is synthetic resi-pop. <em>Signal:</em> playful, tropical, send-it-safe — the Brazilian origin story. Tells beautifully on trail + foam-pit footage. Similar to Yeti Cycles, Santa Cruz, Spank.</div>
+  </div>
+
+  <!-- P4 -->
+  <div class="pal">
+    <div class="pal-head"><span class="pal-name">Track Heritage</span><span class="pal-tag">70s Moto Heritage</span></div>
+    <div class="swatches">
+      <div class="sw" style="background:#1C1A17;color:#fff"><span class="hex">#1C1A17</span><span class="role">Engine Black · primary</span></div>
+      <div class="sw" style="background:#F5C200;color:#111"><span class="hex">#F5C200</span><span class="role">Plate Gold · secondary</span></div>
+      <div class="sw" style="background:#F6A705;color:#111"><span class="hex">#F6A705</span><span class="role">Pit Amber · accent</span></div>
+      <div class="sw" style="background:#A4471F;color:#fff"><span class="hex">#A4471F</span><span class="role">Burnt Clay · accent</span></div>
+      <div class="sw" style="background:#EFE7D2;color:#111"><span class="hex">#EFE7D2</span><span class="role">Vintage Cream · neutral</span></div>
+    </div>
+    <div class="pal-body">Fasthouse's black + golden-yellow moto identity; golden amber is verified Fox <code>#f6a705</code>; cream + burnt clay evoke 70s number plates and faded fairings. <em>Signal:</em> nostalgic, hot-blooded, garage-romantic. Similar to Fasthouse (the definitive ref), vintage Fox, TLD retro.</div>
+  </div>
+
+  <!-- P5 -->
+  <div class="pal">
+    <div class="pal-head"><span class="pal-name">High-Viz Send</span><span class="pal-tag">High-Viz Energy</span></div>
+    <div class="swatches">
+      <div class="sw" style="background:#111111;color:#fff"><span class="hex">#111111</span><span class="role">Void Black · primary</span></div>
+      <div class="sw" style="background:#CCFF00;color:#111"><span class="hex">#CCFF00</span><span class="role">Hi-Viz Volt · secondary</span></div>
+      <div class="sw" style="background:#FF7900;color:#111"><span class="hex">#FF7900</span><span class="role">Safety Orange · accent</span></div>
+      <div class="sw" style="background:#ADFF2F;color:#111"><span class="hex">#ADFF2F</span><span class="role">ANSI Yellow-Green · accent</span></div>
+      <div class="sw" style="background:#E8E8E8;color:#111"><span class="hex">#E8E8E8</span><span class="role">Cool Paper · neutral</span></div>
+    </div>
+    <div class="pal-body">ANSI/OSHA hi-viz PPE standards fused with the fluoro race-kit energy of Fox / TLD downhill jerseys. <em>Signal:</em> electric, competitive, unmissable — race-day adrenaline. Similar to Fox/TLD DH kits, Nike Volt, POC hi-vis.</div>
+  </div>
+
+  <!-- P6 -->
+  <div class="pal">
+    <div class="pal-head"><span class="pal-name">Quarry</span><span class="pal-tag">Muted Heritage Outdoor</span></div>
+    <div class="swatches">
+      <div class="sw" style="background:#3F5267;color:#fff"><span class="hex">#3F5267</span><span class="role">Slate Blue · primary</span></div>
+      <div class="sw" style="background:#5A6F4A;color:#fff"><span class="hex">#5A6F4A</span><span class="role">Faded Olive · secondary</span></div>
+      <div class="sw" style="background:#44746C;color:#fff"><span class="hex">#44746C</span><span class="role">Stone Teal · accent</span></div>
+      <div class="sw" style="background:#353B49;color:#fff"><span class="hex">#353B49</span><span class="role">Charcoal Slate · accent</span></div>
+      <div class="sw" style="background:#CBC9BA;color:#111"><span class="hex">#CBC9BA</span><span class="role">Glacier Stone · neutral</span></div>
+    </div>
+    <div class="pal-body">Patagonia's muted heritage tones crossed with Stone Island's garment-dyed, no-logo-shouting restraint. <em>Signal:</em> earned, understated, timeless — "quietly core." Similar to Patagonia heritage, Stone Island, Filson.</div>
+  </div>
+
+  <!-- P7 -->
+  <div class="pal">
+    <div class="pal-head"><span class="pal-name">Maltese Red</span><span class="pal-tag">Skate-Punk Crossover</span></div>
+    <div class="swatches">
+      <div class="sw" style="background:#0D0D0D;color:#fff"><span class="hex">#0D0D0D</span><span class="role">Ink Black · primary</span></div>
+      <div class="sw" style="background:#C3002F;color:#fff"><span class="hex">#C3002F</span><span class="role">Off-the-Wall Red · secondary</span></div>
+      <div class="sw" style="background:#CC0000;color:#fff"><span class="hex">#CC0000</span><span class="role">Flame Red · accent</span></div>
+      <div class="sw" style="background:#262529;color:#fff"><span class="hex">#262529</span><span class="role">Raisin Black · accent</span></div>
+      <div class="sw" style="background:#F4F1EA;color:#111"><span class="hex">#F4F1EA</span><span class="role">Bone White · neutral</span></div>
+    </div>
+    <div class="pal-body">Vans' verified red/black/white "Off the Wall" identity + Independent Maltese-cross red + Thrasher flame red. <em>Signal:</em> aggressive, urban, cross-discipline — dirt-jump-meets-street. Similar to Vans, Independent, Santa Cruz, Spitfire.</div>
+  </div>
+
+  <!-- P8 -->
+  <div class="pal">
+    <div class="pal-head"><span class="pal-name">King Anodize</span><span class="pal-tag">Premium Tech / Anodized Bling</span></div>
+    <div class="swatches">
+      <div class="sw" style="background:#0F1417;color:#fff"><span class="hex">#0F1417</span><span class="role">Midnight · primary</span></div>
+      <div class="sw" style="background:#40E0D0;color:#111"><span class="hex">#40E0D0</span><span class="role">King Turquoise · secondary</span></div>
+      <div class="sw" style="background:#C9A227;color:#111"><span class="hex">#C9A227</span><span class="role">Anodized Gold · accent</span></div>
+      <div class="sw" style="background:#1EA8DF;color:#111"><span class="hex">#1EA8DF</span><span class="role">Spank Blue · accent</span></div>
+      <div class="sw" style="background:#B8BCC0;color:#111"><span class="hex">#B8BCC0</span><span class="role">Raw Silver · neutral</span></div>
+    </div>
+    <div class="pal-body">Chris King's anodized Turquoise + Midnight finishes, Spank's anodized blue, machined gold — "the jewelry of the bike." <em>Signal:</em> precision, status, made-to-last. For technical/premium hardgoods-adjacent drops. Similar to Chris King, Spank, Industry Nine.</div>
+  </div>
+
+  <div class="callout">
+    <span class="lbl">Recommendation</span>
+    Lead with <strong>Yard Dog</strong> as the core brand identity (punk soul, prints anywhere). Use <strong>Foam Jungle</strong> as the signature seasonal/hero palette (tells the Brazilian origin, shoots beautifully on trail + foam-pit footage). Reserve <strong>Loam Premium</strong> and <strong>King Anodize</strong> for elevated capsule drops.
+  </div>
+
+  <h3>Sources</h3>
+  <div class="sources">
+    <a href="https://whatthelogo.com/logo/fasthouse/33833">Fasthouse — What the Logo?</a> ·
+    <a href="https://www.color-hex.com/color-palette/66223">Santa Cruz palette — color-hex</a> ·
+    <a href="https://brandpalettes.com/patagonia-color-codes/">Patagonia color codes</a> ·
+    <a href="https://colorswall.com/palette/231069">Patagonia earth palette</a> ·
+    <a href="https://encycolorpedia.com/cbc9ba">Patagonia Glacier #cbc9ba</a> ·
+    <a href="https://1000logos.net/thrasher-logo/">Thrasher flame colors</a> ·
+    <a href="https://www.colourlovers.com/color/D9A762/Carhartt_Symbol">Carhartt Symbol #D9A762</a> ·
+    <a href="https://www.mtbr.com/threads/yeti-color-codes-issues.1156003/">Yeti turquoise (PMS 320C)</a> ·
+    <a href="https://chrisking.com/blogs/news/2025-color-assorment">Chris King 2025 colors</a> ·
+    <a href="https://en.wikipedia.org/wiki/Turquoise_(color)">Turquoise #40E0D0</a> ·
+    <a href="https://www.brandcolorcode.com/vans">Vans brand colors</a> ·
+    <a href="https://en.wikipedia.org/wiki/Safety_orange">Safety orange #FF7900</a> ·
+    <a href="https://www.creativesafetysupply.com/articles/safety-colors/">OSHA/ANSI safety colors</a> ·
+    <a href="https://1000logos.net/fox-racing-logo/">Fox Racing logo</a> ·
+    <a href="https://en.wikipedia.org/wiki/Independent_Truck_Company">Independent Truck Co.</a>
+  </div>
+</div></section>
+
+<!-- ============ 2. TYPOGRAPHY ============ -->
+<section id="type"><div class="wrap">
+  <span class="sec-num">02</span>
+  <h2>Typography</h2>
+  <p class="lede">A three-role system (display · body · accent) across four moods. Every primary pick is <strong>Google-Fonts-loadable and free for commercial use</strong> (SIL OFL 1.1, except Permanent Marker = Apache 2.0) — so Patcho ships web, app, and printed garments from one open-source stack with zero licensing invoices. Commercial faces (Druk, Knockout, United, Tungsten) are named for reference only. All specimens below render in their actual fonts.</p>
+
+  <h3>Mood 1 · Grunge / Distressed <span style="color:var(--concrete);font-size:.7em">— Thrasher, Santa Cruz</span></h3>
+  <p>Rebellion, DIY, xeroxed-flyer authenticity. Thrasher's masthead is <strong>Banco</strong> (Excoffon, 1951) — commercial and trademark-adjacent, so <strong>do not clone it</strong>. The skate-grunge signature comes from <em>distressing a strong display face in-layer</em>, not from a sketchy "free grunge font." Clean-licensed blocky options below.</p>
+  <div class="spec"><div class="label">Anton — distress in-layer for grunge drops</div><div class="big-anton">SEND IT OR SHRED</div><span class="lic">Google Fonts · SIL OFL</span></div>
+  <div class="two-col">
+    <div class="spec"><div class="label">Rubik Mono One — brutal, mono-width</div><div class="big-rubik">NO DIG NO RIDE</div><span class="lic">Google Fonts · SIL OFL</span></div>
+    <div class="spec"><div class="label">Bungee — signage / sticker energy</div><div class="big-bungee">YARD BUILT</div><span class="lic">Google Fonts · SIL OFL</span></div>
+  </div>
+
+  <h3>Mood 2 · Athletic Block <span style="color:var(--concrete);font-size:.7em">— Fox, race numbers, number-plate</span></h3>
+  <p>Competition, speed, team identity. The <strong>most versatile mood</strong> and the natural home for the primary logotype — dirt-jump sits inside MX/BMX race heritage, so number-plate DNA reads instantly as "this person rides."</p>
+  <div class="spec"><div class="label">Bebas Neue — definitive free athletic banner (logotype candidate)</div><div class="big-bebas">BORN IN THE YARD · BUILT ON DIRT</div><span class="lic">Google Fonts · SIL OFL 1.1</span></div>
+  <div class="two-col">
+    <div class="spec"><div class="label">Teko — jersey / number-plate</div><div class="big-teko">PATCHO 04</div><span class="lic">Google Fonts · SIL OFL</span></div>
+    <div class="spec"><div class="label">Saira Condensed — Eurostile-tech feel</div><div class="big-saira">RACE PLATE 27</div><span class="lic">Google Fonts · SIL OFL</span></div>
+  </div>
+  <div class="two-col">
+    <div class="spec"><div class="label">Oswald — flexible sub-headers</div><div class="big-bebas" style="font-family:'Oswald';font-weight:700;text-transform:uppercase">DROP 01 / FOAM</div><span class="lic">Google Fonts · SIL OFL</span></div>
+    <div class="spec"><div class="label">Archivo Black — solid block hits</div><div class="big-archblack">SESSION</div><span class="lic">Google Fonts · SIL OFL</span></div>
+  </div>
+  <p style="font-size:.9rem;color:var(--concrete)">Commercial refs (moodboard only): Knockout, Druk Wide, United, Compacta, Trade Gothic Bold Condensed, Giorgio Sans. Free subs: Druk Wide → Anton/Archivo Black; Knockout → Oswald/Bebas; United → Saira Condensed.</p>
+
+  <h3>Mood 3 · Moto-Script <span style="color:var(--concrete);font-size:.7em">— Fasthouse, vintage Honda / Yamaha</span></h3>
+  <p>Heritage, soul, hand-painted authenticity. The accent role's heart — a flowing 70s cursive chest hit. <strong>Use sparingly</strong> (chest hits, sleeve prints, taglines — never body copy). Best free match: <strong>Yellowtail</strong>.</p>
+  <div class="spec"><div class="label">Yellowtail — closest free match to the Fasthouse / vintage moto brush script</div><div class="scr-yellow">Born in the yard</div><span class="lic">Google Fonts · SIL OFL</span></div>
+  <div class="two-col">
+    <div class="spec"><div class="label">Kaushan Script — rawer, energetic</div><div class="scr-kaushan">Send it</div><span class="lic">Google Fonts · SIL OFL 1.1</span></div>
+    <div class="spec"><div class="label">Permanent Marker — DIY scrawl</div><div class="scr-marker">dig &amp; ride</div><span class="lic">Google Fonts · Apache 2.0</span></div>
+  </div>
+
+  <h3>Mood 4 · Refined Sans <span style="color:var(--concrete);font-size:.7em">— Patagonia, Arc'teryx, Yeti</span></h3>
+  <p>Quality, durability, craft — "this is real gear, not a costume." Governs the body role and the technical end of the line: hangtags, product pages, care labels, app UI. This is what separates Patcho from a screen-print novelty brand.</p>
+  <div class="spec"><div class="label">Inter — default body workhorse (web/app/labels)</div><div class="body-inter">Heavyweight 240gsm cotton, boxy fit. Garment-dyed in small numbered runs. Built in the backyard, tested in the foam pit, finished in the jungle. Every Patcho is made to age — the dirt only makes it better.</div><span class="lic">Google Fonts · SIL OFL 1.1</span></div>
+  <div class="two-col">
+    <div class="spec"><div class="label">Barlow — warmer, signage-flavored body</div><div class="body-barlow">Pairs naturally with Bebas/Anton — shares the California-signage DNA.</div><span class="lic">Google Fonts · SIL OFL 1.1</span></div>
+    <div class="spec"><div class="label">Space Grotesk — technical / spec voice</div><div class="body-space">MAT: 100% COTTON · WT: 240GSM · FIT: BOXY · ORIGIN: BR</div><span class="lic">Google Fonts · SIL OFL 1.1</span></div>
+  </div>
+
+  <h3>Recommended Pairing Systems</h3>
+  <div class="two-col">
+    <div class="sys-card">
+      <h4>System A — "Race Plate" <span style="color:var(--send);font-size:.7em">(primary)</span></h4>
+      <div class="row"><span>Display</span><span style="font-family:'Bebas Neue';font-size:1.2rem">Bebas Neue / Anton</span></div>
+      <div class="row"><span>Body</span><span style="font-family:'Inter'">Inter</span></div>
+      <div class="row"><span>Accent</span><span style="font-family:'Yellowtail';font-size:1.3rem">Yellowtail</span> <span style="font-family:'Saira Stencil One'">+ Saira</span></div>
+      <p style="font-size:.84rem;margin-top:10px;color:#aca89f">Max legibility + premium neutrality + authentic moto soul. Zero licensing. Ships everywhere today.</p>
+    </div>
+    <div class="sys-card">
+      <h4>System B — "Yard Built" <span style="color:var(--berm);font-size:.7em">(grittier)</span></h4>
+      <div class="row"><span>Display</span><span style="font-family:'Anton'">Anton (distressed)</span></div>
+      <div class="row"><span>Body</span><span style="font-family:'Barlow'">Barlow</span></div>
+      <div class="row"><span>Accent</span><span style="font-family:'Kaushan Script';font-size:1.2rem">Kaushan</span> <span style="font-family:'Permanent Marker'">+ Marker</span></div>
+      <p style="font-size:.84rem;margin-top:10px;color:#aca89f">Leans punk/DIY for limited drops while staying license-clean.</p>
+    </div>
+  </div>
+  <div class="callout">
+    <span class="lbl">Key insight</span>
+    Build the grunge look from <strong>print treatment</strong> (halftone, overspray, mud-splatter) layered over a clean strong face — <strong>not</strong> from a pre-distressed font. It ages better and keeps the system coherent. And don't clone Banco — distress Anton instead.
+  </div>
+
+  <h3>Sources</h3>
+  <div class="sources">
+    <a href="https://fonts.google.com/specimen/Anton">Anton</a> ·
+    <a href="https://fonts.google.com/specimen/Bebas+Neue">Bebas Neue</a> ·
+    <a href="https://fonts.google.com/specimen/Oswald">Oswald</a> ·
+    <a href="https://fonts.google.com/specimen/Teko">Teko</a> ·
+    <a href="https://fonts.google.com/specimen/Saira+Condensed">Saira Condensed</a> ·
+    <a href="https://fonts.google.com/specimen/Archivo">Archivo</a> ·
+    <a href="https://fonts.google.com/specimen/Inter">Inter</a> ·
+    <a href="https://fonts.google.com/specimen/Barlow">Barlow</a> ·
+    <a href="https://fonts.google.com/specimen/Space+Grotesk">Space Grotesk</a> ·
+    <a href="https://fonts.google.com/specimen/Yellowtail">Yellowtail</a> ·
+    <a href="https://fonts.google.com/specimen/Kaushan+Script">Kaushan Script</a> ·
+    <a href="https://fonts.google.com/specimen/Permanent+Marker">Permanent Marker</a> ·
+    <a href="https://fonts.google.com/specimen/Rubik+Mono+One">Rubik Mono One</a> ·
+    <a href="https://fontsinuse.com/uses/2799/thrasher-magazine-logo">Thrasher / Banco history</a> ·
+    <a href="https://www.designyourway.net/blog/patagonia-font/">Patagonia font</a> ·
+    <a href="https://en.wikipedia.org/wiki/SIL_Open_Font_License">SIL OFL</a> ·
+    <a href="https://commercialtype.com/catalog/druk">Druk (ref)</a> ·
+    <a href="https://www.typography.com/fonts/knockout/overview">Knockout (ref)</a>
+  </div>
+</div></section>
+
+<!-- ============ 3. LOGO ARCHETYPES ============ -->
+<section id="logo"><div class="wrap">
+  <span class="sec-num">03</span>
+  <h2>Logo Archetypes</h2>
+  <p class="lede">A logo <em>system</em>, not one mark: a primary device, a compact icon for small spaces, and an art direction that survives a huge back panel and a tiny sleeve cuff. In this culture the logo isn't a corporate signature — it's a tribal marker you fly to show you belong. Five archetypes, rated for a dirt brand. The name "Patcho" hands us a once-in-a-brand gift: the device and the name are the same word.</p>
+
+  <div class="arch">
+    <div class="arch-title"><span class="arch-letter">A</span><span class="arch-name">Bold Wordmark / Logotype</span></div>
+    <div class="ratings"><span class="rating">Merch<b>A+</b></span><span class="rating">Scale<b>A+</b></span><span class="rating">Distinct<b>C+</b></span></div>
+    <p>The dominant archetype in action sports — apparel is the canvas. Craft lives in one signature letterform "trick": Vans' roof-"V", Thrasher's removable flame skin (clean for editorial, burning for merch), Fox's tonal "Wordmark" line.</p>
+    <div class="pc"><ul class="pros"><li>Legible at any size, any garment</li><li>Cheapest path to recognition</li><li>Endlessly remixable (Thrasher lesson)</li></ul><ul class="cons"><li>Hardest to make distinctive</li><li>No standalone stamp</li><li>Gives no collectible object</li></ul></div>
+  </div>
+
+  <div class="arch">
+    <div class="arch-title"><span class="arch-letter">B</span><span class="arch-name">Badge / Emblem / Crest</span></div>
+    <div class="ratings"><span class="rating">Merch<b>A</b></span><span class="rating">Scale<b>B</b></span><span class="rating">Distinct<b>B+</b></span></div>
+    <p>A bounded shape bundling name, year, location, motif — reads as heritage and belonging. Not coincidentally the native shape of a patch. Santa Cruz red dot, Independent crest, Yeti's ownable turquoise lockup.</p>
+    <div class="pc"><ul class="pros"><li>Instant "club" feeling — perfect for a yard/crew</li><li>A shape that's inherently a patch/pin/sticker</li><li>Holds tagline + est. date</li></ul><ul class="cons"><li>Detail-dense badges shrink poorly</li><li>Can drift generic "craft-brewery"</li><li>Slower to read in motion/thumbnails</li></ul></div>
+  </div>
+
+  <div class="arch">
+    <div class="arch-title"><span class="arch-letter">C</span><span class="arch-name">Mascot / Character</span></div>
+    <div class="ratings"><span class="rating">Merch<b>A+</b></span><span class="rating">Scale<b>B</b></span><span class="rating">Distinct<b>A</b></span></div>
+    <p>Often the most-loved and most-merched asset a brand owns. Santa Cruz's Screaming Hand started as a wheel graphic and <em>outgrew the logo</em> — the canonical lesson. Best held as a second-act asset layered on the wordmark.</p>
+    <div class="pc"><ul class="pros"><li>Highest emotional ceiling — soul-brand fuel</li><li>Spawns infinite tees, poses, collabs</li><li>Distinctive by default</li></ul><ul class="cons"><li>Expensive, risky to get right</li><li>Style-locked, can date</li><li>Not a clean utility mark alone</li></ul></div>
+  </div>
+
+  <div class="arch">
+    <div class="arch-title"><span class="arch-letter">D</span><span class="arch-name">Monogram / Icon</span></div>
+    <div class="ratings"><span class="rating">Merch<b>B+</b></span><span class="rating">Scale<b>A+</b></span><span class="rating">Distinct<b>C→A</b></span></div>
+    <p>The favicon / headbadge / embossing workhorse. HUF's "H" <em>is</em> the hat; Chris King's restraint signals precision; component brands (Deity, Spank, DMR) etch icon-marks on small machined parts.</p>
+    <div class="pc"><ul class="pros"><li>Ultimate scalability (favicon → headbadge)</li><li>"Hardware-credible" — signals you make parts</li><li>Cheap, consistent everywhere</li></ul><ul class="cons"><li>Low meaning early (must be taught)</li><li>Coldest for a soul brand alone</li><li>Single letters collide easily</li></ul></div>
+  </div>
+
+  <div class="arch hero-arch">
+    <div class="arch-title"><span class="arch-letter">E</span><span class="arch-name">Patch-Based System</span> <span class="lead-badge">Hero for Patcho</span></div>
+    <div class="ratings"><span class="rating">Merch<b>A++</b></span><span class="rating">Scale<b>B+</b></span><span class="rating">Distinct<b>A++</b></span></div>
+    <p>Here the medium is the identity: the core device isn't a flat logo, it's <strong>a physical patch</strong> and the <em>system</em> of patches — bounded, tactile, collectible objects you attach, swap, trade, and earn. The brand becomes a patch label the way Supreme is a box-logo label. For a brand literally named <strong>Patcho</strong>, the name, device, and product become one closed loop — no competitor can out-authenticate it.</p>
+    <h4>The heritage kit</h4>
+    <p>Military → morale-patch lineage (official insignia identifies the unit; the morale patch captures what the unit <em>actually was</em> — "official enough to identify, personal enough to mean something"). The mid-2000s <strong>Velcro shift</strong> turned the patch from a permanent statement into a swappable, rotating identity signal — that one mechanical change built the modern morale-patch industry. Plus scout sashes, MC back-patch "colors," and streetwear patch craft (embroidered, 3D puff, chain-stitch, woven, leather, PVC, sublimated).</p>
+    <h4>How Patcho makes the patch its core device</h4>
+    <ul>
+      <li><strong>One hero patch = the brand stamp</strong> (badge-shaped, embroidered/chain-stitch, merrow-edge) — the box-logo equivalent.</li>
+      <li><strong>Velcro-backed swap system</strong> as the signature mechanic — garments ship with a hook field; patches drop/earn/collab separately. You <em>Patcho</em> your gear.</li>
+      <li><strong>A patch language</strong>: core logo + numbered crew patches + earned patches (sessions, trips, the home yard) + collabs, in 50–100 unit batches → scarcity + belonging, tradeable currency.</li>
+      <li><strong>Placement grammar</strong> (identity front-left chest, rotating/joke patch on back/sleeve) — a culture with rules you opt into.</li>
+      <li><strong>Design for artifact status</strong> — distressing/fraying become features; the product literally ages better in the dirt ("Built on dirt").</li>
+    </ul>
+  </div>
+
+  <div class="callout">
+    <span class="lbl">Recommendation</span>
+    <strong>Lead with the patch system (E)</strong> as the core device, anchored by a bold custom <strong>wordmark (A)</strong> inside a <strong>badge-shaped (B)</strong> hero patch, with a <strong>monogram (D)</strong> fallback for favicons/labels and a <strong>mascot (C)</strong> held in reserve as a second-act asset. The patch <em>contains</em> all archetypes as needed while making the name, device, product, and community ritual a single self-reinforcing loop.
+  </div>
+
+  <h3>Sources</h3>
+  <div class="sources">
+    <a href="https://1000logos.net/vans-logo/">Vans logo history</a> ·
+    <a href="https://1000logos.net/thrasher-logo/">Thrasher logo</a> ·
+    <a href="https://nhsskatedirect.com/blogs/nhs-skate-direct/history-of-the-screaming-hand-logo">Screaming Hand history</a> ·
+    <a href="https://1000logos.net/santa-cruz-logo/">Santa Cruz logo</a> ·
+    <a href="https://logos-world.net/fox-racing-logo/">Fox Racing logo</a> ·
+    <a href="https://yeticycles.com/en-us/company">Yeti Cycles</a> ·
+    <a href="https://havokjournal.com/life-2/morale-patches-what-they-are-why-modern-units-actually-wear-them-and-how-velcro-became-a-battalion-identity-marker/">Morale patches &amp; Velcro</a> ·
+    <a href="https://www.dutchlabelshop.com/en_us/blog/what-is-a-morale-patch/">What is a morale patch</a> ·
+    <a href="https://www.thestudio.com/custom-patches/embroidered-patches/">Embroidered patch types</a> ·
+    <a href="https://dmrbikes.com/">DMR Bikes</a> ·
+    <a href="https://spellbrand.com/blog/top-10-dirt-bike-racing-logos">Dirt-bike racing logos</a>
+  </div>
+</div></section>
+
+<!-- ============ 4. MERCH ============ -->
+<section id="merch"><div class="wrap">
+  <span class="sec-num">04</span>
+  <h2>Merch &amp; Application</h2>
+  <p class="lede">The real merch landscape Patcho is entering — grounded in what Fasthouse, DHaRCO, Loose Riders, TLD, Fox, Yeti, Thrasher and Santa Cruz actually ship in 2025-2026. Strategic core: <strong>the tee, sticker, patch and cap ARE the brand at launch; the jersey is a graduation, not a starting point.</strong></p>
+
+  <h3>The Format Stack</h3>
+  <div class="merch-grid">
+    <div class="mcard"><span class="tier core">Core · Launch</span><h4>Graphic tee</h4><p>The anchor and primary canvas — where the soul lives. Heavyweight cotton, boxy fit. Everything orbits the tee.</p></div>
+    <div class="mcard"><span class="tier core">Core · Launch</span><h4>Stickers</h4><p>Cheapest brand artifact, best conversion tool. The $5 sticker converts the rider who hesitated on the $40 tee — and spreads at the trailhead.</p></div>
+    <div class="mcard"><span class="tier core">Core · Launch</span><h4>Patches</h4><p>Read as authentic, DIY, collectible. Iron-on / velcro. Sit perfectly with "Born in the yard." Low MOQ.</p></div>
+    <div class="mcard"><span class="tier core">Core · Launch</span><h4>Caps</h4><p>Second-biggest identity item. Trucker (hero) + corduroy rope hat in drop one.</p></div>
+    <div class="mcard"><span class="tier core">Core · Launch</span><h4>Hoodie / crew</h4><p>Higher ticket, higher margin, big back-print canvas. One or two colorways, not a range.</p></div>
+    <div class="mcard"><span class="tier p2">Phase 2</span><h4>Beanies · socks · flannel · coaches jacket</h4><p>Cheap on-brand adds + rugged-workwear crossover (TLD Ruckus, LR flannels) once cashflow + audience exist.</p></div>
+    <div class="mcard"><span class="tier p3">Phase 3 · Capital</span><h4>DJ / MTB jersey</h4><p>The genre's signature performance piece — but needs technical fabrics + real pattern work. Earn the right to make it on cotton first.</p></div>
+  </div>
+
+  <h3>2025-2026 Graphic &amp; Garment Trends</h3>
+  <div class="two-col">
+    <div>
+      <h4>Silhouette &amp; blank</h4>
+      <ul><li><strong>Structured oversized/boxy</strong> is the dominant cut — now an expectation</li><li><strong>Heavyweight cotton (220-260+ gsm)</strong> that holds shape = trust signal; collapsing necklines kill repeat orders</li><li>Texture (slub, waffle, rib) as perceived premium</li></ul>
+      <h4>Washes &amp; dye</h4>
+      <ul><li><strong>Garment / pigment-dyed</strong> — broken-in feel (Fasthouse "Render")</li><li><strong>Acid / mineral / crystal wash</strong> — Fasthouse literally sells "Crystal Wash"; reads anti-corporate</li><li>Vintage/faded = "earned, not bought"</li></ul>
+    </div>
+    <div>
+      <h4>Decoration (match technique to story)</h4>
+      <ul><li><strong>Screen print</strong> — genre standard, cheapest at volume</li><li><strong>Puff &amp; crackle ink</strong> — cheap elevation, signature streetwear move</li><li><strong>DTG / DTF</strong> — no minimums; test artwork before committing</li><li><strong>Embroidery / 3D puff</strong> — gold standard for caps/hoodies; flat cost = friendly for small runs</li></ul>
+      <h4>Placement vocabulary</h4>
+      <ul><li>Front badge + <strong>full back</strong> (hero/storytelling) + sleeve hit + nape + hem — multi-placement rewards a closer look. Front-and-back is now baseline.</li></ul>
+    </div>
+  </div>
+
+  <h3>Caps — Format Decision</h3>
+  <table class="t">
+    <tr><th>Format</th><th>Reads as</th><th>Best decoration</th><th>For Patcho</th></tr>
+    <tr><td><strong>Trucker</strong> (foam + mesh)</td><td>Throwback, race-day, breathable</td><td>3D puff embroidery / patch</td><td><strong>Yes — hero cap.</strong> Most on-brand for sweaty sessions.</td></tr>
+    <tr><td><strong>Corduroy 5-panel / rope</strong></td><td>Retro-clean, mountain-vintage</td><td>Embroidered patch + rope</td><td><strong>Yes — second cap.</strong> The MTB-streetwear crossover.</td></tr>
+    <tr><td>5-panel camp cap</td><td>Minimalist, bold-graphic canvas</td><td>Flat front print / patch</td><td>Optional — clean logo statement.</td></tr>
+    <tr><td>Dad cap</td><td>Low-key everyday</td><td>Low-profile embroidery</td><td>Optional — safe but least distinctive.</td></tr>
+  </table>
+
+  <h3>What Makes a Tee Actually Sell</h3>
+  <p>The Thrasher case is canonical: the tee began as a <em>free magazine giveaway</em>, got so coveted fans resold it, <em>then</em> became a product. Credibility first, commerce second.</p>
+  <ul>
+    <li><strong>Earned authenticity over manufactured cool</strong> — the scene polices posers. Patcho's Brazilian founders + real trail/foam-pit footage <em>is</em> the credibility engine.</li>
+    <li><strong>Insider references</strong> — specific trails, tricks, slang turn a tee into a tribal marker.</li>
+    <li><strong>Riders/athletes as the story</strong> — a small roster in real footage beats any ad spend.</li>
+    <li><strong>Story over logo-slap</strong> — back-print storytelling outperforms a chest logo.</li>
+    <li><strong>Drops &amp; scarcity</strong> — numbered runs, email-first access; sell-outs are marketing.</li>
+    <li><strong>Quality that earns repeat wear</strong> — 2026 buyers reward fit + shape-retention; the second purchase is where soul brands compound.</li>
+    <li><strong>Off-the-bike wearability</strong> — the casual line is the moat (Fasthouse, Loose Riders won by being everywhere, not just on riders).</li>
+  </ul>
+
+  <div class="callout">
+    <span class="lbl">Net implication</span>
+    Open with a tight high-identity core: 1-2 heavyweight boxy tees (front badge + storytelling back print, a wash colorway), a sticker pack, a patch, a puff-embroidered trucker, a corduroy rope hat. Test artwork with DTG/DTF, screen-print the winners (puff/crackle upgrades), embroider headwear. Release as scarce, numbered, email-first drops tied to real footage and riders. Defer jerseys/socks/workwear.
+  </div>
+
+  <h3>Sources</h3>
+  <div class="sources">
+    <a href="https://www.fasthouse.com/collections/mens-tees">Fasthouse tees</a> ·
+    <a href="https://www.pinkbike.com/news/dharco-launches-2026-collection.html">DHaRCO 2026</a> ·
+    <a href="https://www.loose-riders.com/en/men/lifestyle/">Loose Riders Lifestyle</a> ·
+    <a href="https://troyleedesigns.com/">Troy Lee Designs</a> ·
+    <a href="https://www.vitalmtb.com/news/press-release/yeti-launches-2025-technical-apparel">Yeti 2025 apparel</a> ·
+    <a href="https://culted.com/blood-scabs-and-tears-the-thrasher-tees-rise-to-fame/">Thrasher tee story</a> ·
+    <a href="https://printify.com/blog/streetwear-fashion-trends/">Streetwear trends 2026</a> ·
+    <a href="https://topologyclothing.com/blogs/news/screen-printing-vs-dtg-vs-embroidery-guide">Print vs DTG vs embroidery</a> ·
+    <a href="https://arklavo.com/blogs/custom-apparel-guide/dtf-vs-dtg-ultimate-guide">DTF vs DTG 2026</a> ·
+    <a href="https://outerwings.com/blogs/news/performance-hat-vs-trucker-vs-rope-hat-2026">Trucker vs rope hat</a> ·
+    <a href="https://bikepacking.com/news/spring-2026-merchandise/">BIKEPACKING drop (members-first)</a> ·
+    <a href="https://www.patchmarks.com/">Patchmarks (patches/headwear)</a>
+  </div>
+</div></section>
+
+<!-- ============ 5. MOTIF ============ -->
+<section id="motif"><div class="wrap">
+  <span class="sec-num">05</span>
+  <h2>Texture &amp; Motif Library</h2>
+  <p class="lede">Patcho's visual vocabulary — a kit of recurring motifs rooted in the literal materials and rituals of backyard dirt-jumping. The discipline lesson from the best brands: <strong>own a small set of hero devices and apply them relentlessly</strong> (Fox built an empire on one angular head). Ten motif families feed three layers — hero marks, workhorse badges/patches, and texture overlays.</p>
+
+  <div class="motif-grid">
+    <div class="motif"><span class="mi">5.1</span><h4>Dirt / Soil Textures</h4><p>Cracked-earth crackle knocked into wordmarks; loam halftone gradients; dust-cloud "roost" plumes; soil-strata hem bands.</p><p class="ref">Ref: Fasthouse worn earthy palettes, DIG BMX</p></div>
+    <div class="motif"><span class="mi">5.2</span><h4>Tire Tracks / Tread</h4><p>Knobby tread as border/all-over; a single skid arc carrying the wordmark; tread-fill type; a tread "stamp" as the brand's punctuation mark.</p><p class="ref">Ref: Cult × Vans waffle-tread tire</p></div>
+    <div class="motif"><span class="mi">5.3</span><h4>Berms &amp; Jump Profiles</h4><p>The takeoff-lip silhouette (hero candidate); a "line of doubles" hem repeat; dotted air-arc trajectory; blueprint cross-sections.</p><p class="ref">Ref: Red Bull build guides, trail-builder craft</p></div>
+    <div class="motif"><span class="mi">5.4</span><h4>Topo / Trail-Map Contours</h4><p>Contour all-over; a "you-are-here" map of the real home yard as a hero back-print; topo coin with the spot's coordinates.</p><p class="ref">Ref: Statement Clothing Co., gorpcore topo</p></div>
+    <div class="motif"><span class="mi">5.5</span><h4>Foam-Pit Cubes</h4><p>Isometric cube; cube-stack "P" monogram; sea-of-cubes confetti all-over; the cube as the brand's literal color-swatch device.</p><p class="ref">Ref: Foamite, Woodward — wide-open in apparel</p></div>
+    <div class="motif"><span class="mi">5.6</span><h4>Jungle Foliage</h4><p>Bold B&amp;W monstera all-over; leaf-and-tire hybrids (veins as tread); overgrown-jump line-art; Brazilian flora (cecropia, heliconia).</p><p class="ref">Ref: Farm Rio / Osklen tropical, rendered grimy</p></div>
+    <div class="motif"><span class="mi">5.7</span><h4>Resi / Airbag Forms</h4><p>Welded-baffle quilting as puff embroidery; sloped-ramp silhouette; soft inflated letterforms for the playful line; catch-zone target.</p><p class="ref">Ref: BigAirBag, BAGJUMP</p></div>
+    <div class="motif"><span class="mi">5.8</span><h4>Shovels / Tools</h4><p>Crossed-shovels crest (hero); tool-wall line-icon set; "No Dig No Ride" banderole; shovel-as-letterform; dirt clinging to the blade.</p><p class="ref">Ref: Trail Blades "by builders, for builders," ENDURO</p></div>
+    <div class="motif"><span class="mi">5.9</span><h4>Spray Paint / Stencil</h4><p>Stencil-cut PATCHO wordmark (bridge gaps, overspray); tagged-plywood aesthetic; rattle-can fades; stencil versions of every icon.</p><p class="ref">Ref: Vans (logo designed as a stencil), Thrasher</p></div>
+    <div class="motif"><span class="mi">5.10</span><h4>Halftone Grunge</h4><p>The finishing layer over everything: halftone fades, ONE house distress mask, mud-fleck splatter, newsprint-halftone rider portraits.</p><p class="ref">Ref: Thrasher / Fasthouse / DIG grit toolkit</p></div>
+  </div>
+
+  <h3>Signature Ownable Hero Devices</h3>
+  <p>From the families above, the few marks worth investing in as <em>the</em> recognizable Patcho — the ones for the hangtag, the woven patch, and (done right) people's skin:</p>
+
+  <div class="hero-dev"><span class="num">1</span><h4>The Lip</h4><p>A single confident line-art curve abstracted from a dirt-jump takeoff lip — doubles as a check-mark and a smile, works at any scale, the most logo-able shape in the sport. Patcho's "swoosh." Add a dotted air-arc for the full "send" lockup. <strong>Primary brand-mark candidate.</strong></p></div>
+  <div class="hero-dev"><span class="num">2</span><h4>The Patch</h4><p>Lean into the name: an ownable, irregular <strong>stitched-edge patch silhouette</strong> (torn-and-restitched shield-blob) as the universal <em>container</em> for every emblem — recognizable even empty. Triple meaning: a sew-on patch, a patch of dirt, patching the trail. The most natural equity grab available. <strong>Primary system device.</strong></p></div>
+  <div class="hero-dev"><span class="num">3</span><h4>The Foam-Cube Monogram</h4><p>A blocky "P" built from isometric stacked foam cubes — distinctive, unexpected, directly tied to Patcho's actual foam pit. Almost nobody in dirt apparel owns this. Doubles as a color-system device (each colorway = a cube color). <strong>Secondary mark / merch hero.</strong></p></div>
+  <div class="hero-dev"><span class="num">4</span><h4>The Crossed-Shovels "No Dig No Ride" Crest</h4><p>Two crossed spades + est. year — the "Yard Built" dig-crew insignia. The soul mark for the dig-culture faithful and the natural centerpiece of a premium/heritage drop. <strong>Workhorse badge.</strong></p></div>
+
+  <div class="callout">
+    <span class="lbl">System logic</span>
+    <strong>The Patch</strong> is the universal frame → it holds The Lip, the Cube Monogram, or the Shovel Crest depending on the piece. Hero apparel carries a topo "yard map" or jungle back-print. Everything is finished with ONE house halftone-grunge distress, and the stencil treatment when DIY energy is wanted. Palette: dirt browns/tans + jungle greens base, rotating foam-cube accent per season. Two type registers: angular moto (gnarly line) + soft inflated-resi forms (playful/progression line). A natural capsule arc falls right out: a <strong>"Foam → Resi → Dirt"</strong> three-drop progression telling the brand's own learning story.
+  </div>
+
+  <h3>Sources</h3>
+  <div class="sources">
+    <a href="https://1000logos.net/fox-racing-logo/">Fox Racing one-mark discipline</a> ·
+    <a href="https://99designs.com/inspiration/logos/mtb">MTB / DJ logo conventions</a> ·
+    <a href="https://digbmx.com/features/the-most-influential-bmx-t-shirt-companies-of-the-80s-90s-part-2">DIG BMX tee history</a> ·
+    <a href="https://foamite.com/foam-pit-cubes/">Foam pit cubes</a> ·
+    <a href="https://www.bigairbag.com/landing-the-ultimate-athlete-training-setup/">BigAirBag</a> ·
+    <a href="https://bagjump.com/areas/bike/">BAGJUMP</a> ·
+    <a href="https://trailbladesusa.com/">Trail Blades</a> ·
+    <a href="https://enduro-mtb.com/en/trail-building-heroes/">ENDURO trail-building heroes</a> ·
+    <a href="https://www.thrashermagazine.com/articles/thrasher-canvas-three-decades-of-skate-art/">Thrasher Canvas (spray/stencil)</a> ·
+    <a href="https://shop.shredzshop.com/blogs/blog/50-skateboard-logos-explained">Vans stencil / 50 skate logos</a> ·
+    <a href="https://live.ink/10-t-shirt-design-styles-popular-in-2026">2026 tee styles (gorpcore/topo)</a> ·
+    <a href="https://stock.adobe.com/images/outdoor-pattern-of-topographic-line-map-vector-line-pattern-geographic-terrain-grid-relief-height-elevation-ground-path-pattern-vector-art/784272096">Topo pattern vector</a> ·
+    <a href="https://en.wikipedia.org/wiki/Embroidered_patch">Embroidered patch</a>
+  </div>
+</div></section>
+
+<footer>
+  <div class="wrap">
+    <p style="font-family:'Anton';font-size:1.4rem;color:var(--bone);letter-spacing:.02em">PATCH<span style="color:var(--send)">O</span></p>
+    <p>Brand identity exploration · grounded in real-brand research across MTB, BMX, moto, skate &amp; heritage-outdoor culture.</p>
+    <p style="margin-top:8px">Born in the yard. Built on dirt.</p>
+  </div>
+</footer>
+
+</body>
+</html>
